@@ -18,20 +18,21 @@ namespace POO_Buscarr.controller
             database = new Database();
         }
 
-        public void AddCar(string model, string brand, string renavan, string plate, string situation)
+        public void AddCar(string model, string brand, string plate, string renavan, string situation)
         {
-            Car car = new Car(model, brand, renavan, plate, situation);
-            database.OpenConnection();
+            Car car = new Car(model, brand, plate, renavan, situation);
             
-            string query = "INSERT INTO cars (model, brand, renavan, plate, situation) VALUES (@model, @brand, @renavan, @plate, @situation)";
+            if (!database.OpenConnection()) return;
+
+            string query = "INSERT INTO carro (modelo, marca, placa, renavan, status) VALUES (@model, @brand, @plate, @renavan, @status)";
             
             using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
             {
                 cmd.Parameters.AddWithValue("@model", model);
                 cmd.Parameters.AddWithValue("@brand", brand);
-                cmd.Parameters.AddWithValue("@renavan", renavan);
                 cmd.Parameters.AddWithValue("@plate", plate);
-                cmd.Parameters.AddWithValue("@situation", situation);
+                cmd.Parameters.AddWithValue("@renavan", renavan);
+                cmd.Parameters.AddWithValue("@status", situation);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -41,16 +42,18 @@ namespace POO_Buscarr.controller
                 {
                     Console.WriteLine("Erro ao adicionar carro: " + ex.Message);
                 }
+                finally
+                {
+                    database.CloseConnection();
+                }
             }
-
-            database.CloseConnection();
         }
 
-        public void UpdateCar(string renavan, string model, string brand, string plate, string situation)
+        public void UpdateCar(string model, string brand, string plate, string renavan, string situation)
         {
-            database.OpenConnection();
-            
-            string query = "UPDATE cars SET model = @model, brand = @brand, plate = @plate, situation = @situation WHERE renavan = @renavan";
+            if (!database.OpenConnection()) return;
+
+            string query = "UPDATE carro SET modelo = @model, marca = @brand, placa = @plate, status = @situation WHERE renavan = @renavan";
             
             using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
             {
@@ -70,15 +73,19 @@ namespace POO_Buscarr.controller
                 {
                     Console.WriteLine("Erro ao atualizar carro: " + ex.Message);
                 }
+
+                finally
+                {
+                    database.CloseConnection();
+                }
             }
-            database.CloseConnection();
         }
 
         public void DeleteCar(string renavan)
         {
-            database.OpenConnection();
-            
-            string query = "DELETE FROM cars WHERE renavan = @renavan";
+            if (!database.OpenConnection()) return;
+
+            string query = "DELETE FROM carro WHERE renavan = @renavan";
             
             using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
             {
@@ -88,19 +95,24 @@ namespace POO_Buscarr.controller
                     cmd.ExecuteNonQuery();
                     Console.WriteLine("Carro deletado com sucesso.");
                 }
+
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Erro ao deletar carro: " + ex.Message);
                 }
+
+                finally
+                {
+                    database.CloseConnection();
+                }
             }
-            database.CloseConnection();
         }
 
         public void ListCars()
         {
-            database.OpenConnection();
-            
-            string query = "SELECT * FROM cars";
+            if (!database.OpenConnection()) return;
+
+            string query = "SELECT * FROM carro";
             
             using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
             {
@@ -110,7 +122,7 @@ namespace POO_Buscarr.controller
                     {
                         while (reader.Read())
                         {
-                            Console.WriteLine($"Modelo: {reader["model"]}, Marca: {reader["brand"]}, Renavan: {reader["renavan"]}, Placa: {reader["plate"]}, Situação: {reader["situation"]}");
+                            Console.WriteLine($"Modelo: {reader["modelo"]}, Marca: {reader["marca"]}, Renavan: {reader["renavan"]}, Placa: {reader["placa"]}, Situação: {reader["status"]}");
                         }
                     }
                 }
@@ -118,15 +130,19 @@ namespace POO_Buscarr.controller
                 {
                     Console.WriteLine("Erro ao listar carros: " + ex.Message);
                 }
+
+                finally
+                {
+                    database.CloseConnection();
+                }
             }
-            database.CloseConnection();
         }
 
         public void SearchCar(string renavan)
         {
-            database.OpenConnection();
-            
-            string query = "SELECT * FROM cars WHERE renavan = @renavan";
+            if (!database.OpenConnection()) return;
+
+            string query = "SELECT * FROM carro WHERE renavan = @renavan";
             
             using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
             {
@@ -149,8 +165,11 @@ namespace POO_Buscarr.controller
                 {
                     Console.WriteLine("Erro ao buscar carro: " + ex.Message);
                 }
+                finally
+                {
+                    database.CloseConnection();
+                }
             }
-            database.CloseConnection();
         }
     }
 }

@@ -22,18 +22,24 @@ namespace POO_Buscarr.database
             return cnn;
         }
 
-        public void OpenConnection()
+        public bool OpenConnection()
         {
             try
             {
-                cnn.Open();
-                Console.WriteLine("Conexão aberta com sucesso.");
+                if (cnn.State != System.Data.ConnectionState.Open)
+                {
+                    cnn.Open();
+                    Console.WriteLine("Conexão aberta com sucesso.");
+                }
+                return true;
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine("Erro ao conectar: " + ex.Message);
+                return false;
             }
         }
+
 
         public void CloseConnection()
         {
