@@ -117,29 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TelaCadastro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaCadastro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TelaDigiteCnpj" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaDigiteCnpj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Tela de Cadastro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tela de Cadastro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TelaDigiteCnh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaDigiteCnh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TelaSelecionarTipoUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TelaSelecionarTipoUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Transparent_Square_Tiles_Texture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Transparent_Square_Tiles_Texture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Tela de Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tela de Login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="btnCadastrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnCadastrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

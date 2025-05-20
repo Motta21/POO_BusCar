@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POO_Buscarr
+namespace POO_Buscarr.view
 {
-    public partial class Login : Form
+    public partial class TelaSelecionarTipoUser: Form
     {
-        public Login()
+        public TelaSelecionarTipoUser()
         {
             InitializeComponent();
         }

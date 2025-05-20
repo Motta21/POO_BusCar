@@ -63,9 +63,79 @@ namespace POO_Buscarr.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btnCadastrar {
+            get {
+                object obj = ResourceManager.GetObject("btnCadastrar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tela_de_Cadastro {
+            get {
+                object obj = ResourceManager.GetObject("Tela de Cadastro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tela_de_Login {
             get {
                 object obj = ResourceManager.GetObject("Tela de Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaCadastro {
+            get {
+                object obj = ResourceManager.GetObject("TelaCadastro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaDigiteCnh {
+            get {
+                object obj = ResourceManager.GetObject("TelaDigiteCnh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaDigiteCnpj {
+            get {
+                object obj = ResourceManager.GetObject("TelaDigiteCnpj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TelaSelecionarTipoUser {
+            get {
+                object obj = ResourceManager.GetObject("TelaSelecionarTipoUser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Transparent_Square_Tiles_Texture {
+            get {
+                object obj = ResourceManager.GetObject("Transparent_Square_Tiles_Texture", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
