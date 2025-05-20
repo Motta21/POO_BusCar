@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+*.user
+*.sup
+*.vsidx
+*.dbmdl
+*.log
