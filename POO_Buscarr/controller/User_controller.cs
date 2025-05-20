@@ -54,6 +54,12 @@ namespace POO_Buscarr.controller
                     return false;
                 }
 
+                if (!POO_Buscarr.controller.Password_controller.IsValid(password))
+                {
+                    Console.WriteLine("Senha inválida!");
+                    return false;
+                }
+
                 string sql = @"INSERT INTO admin (name, email, password, cnpj, cpf) 
                          VALUES (@name, @email, @password, @cnpj, @cpf)";
 
