@@ -105,6 +105,7 @@
     <Compile Include="controller\CNPJ_controller.cs" />
     <Compile Include="controller\CPF_controller.cs" />
     <Compile Include="controller\Email_controller.cs" />
+    <Compile Include="controller\Password_controller.cs" />
     <Compile Include="controller\User_controller.cs" />
     <Compile Include="database\banco.cs" />
     <Compile Include="model\Admin.cs" />
@@ -208,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnCadastrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Botao_Cadastrar-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

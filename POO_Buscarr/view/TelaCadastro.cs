@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using Mysqlx;
+using POO_Buscarr.controller;
+using POO_Buscarr.database;
 
 namespace POO_Buscarr.view
 {
@@ -42,6 +47,156 @@ namespace POO_Buscarr.view
             var telaLogin = new TelaLogin();
             telaLogin.FormClosed += (s, args) => this.Close();
             telaLogin.Show();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+        
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+         
+          
+
+        }
+
+        private void btn_cadastrar_Click(object sender, EventArgs e)
+        {
+            //Dados
+
+            string nome = campoNome.Text;
+            string email = campoEmail.Text;
+            string cpf = campoCPF.Text;
+            string senha1 = campoSenha1.Text;
+            string senha2 = campoSenha2.Text;
+
+            //Verificação do preenchimento ||:D||
+
+            if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(senha1) || string.IsNullOrEmpty(senha2))
+            {
+                MessageBox.Show("Preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            //Validações
+            bool emailValido = Email_controller.IsValid(email);
+            bool cpfValido = CPFController.ValidateCpf(cpf);
+            bool senhaValida = Password_controller.Verify(senha1);
+            bool senhasIguais = senha1 == senha2;
+
+            // Verificar cada validação
+            if (!emailValido)
+            {
+                MessageBox.Show("E-mail inválido.");
+                return;
+            }
+
+            if (!cpfValido)
+            {
+                MessageBox.Show("CPF inválido.");
+                return;
+            }
+
+            if (!senhaValida)
+            {
+                MessageBox.Show("A senha não atende aos critérios.");
+                return;
+            }
+
+            if (!senhasIguais)
+            {
+                MessageBox.Show("As senhas não coincidem.");
+                return;
+            }
+
+            // Se tudo esta validade
+
+            Database db = new Database();
+
+            if (db.OpenConnection())
+            {
+                string sql = "INSERT INTO admin (nome, email, password, cnpj) VALUES (@nome, @email, @cpf, @senha)";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, db.GetConnection()))
+                {
+                    cmd.Parameters.AddWithValue("@nome", nome);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@cpf", cpf);
+                    cmd.Parameters.AddWithValue("@senha", senha1); // Recomendo aplicar hash depois!
+
+                    try
+                    {
+                        int resultado = cmd.ExecuteNonQuery();
+
+                        if (resultado > 0)
+                        {
+                            MessageBox.Show("Usuário cadastrado com sucesso!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao cadastrar usuário.");
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Erro de banco: " + ex.Message);
+                    }
+                    finally
+                    {
+                        db.CloseConnection();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível conectar ao banco.");
+            }
+
+
+
+            string mensagem = $"Usuário cadastrado com sucesso!\n\n" +
+                              $"Nome: {nome}\n" +
+                              $"E-mail: {email}\n" +
+                              $"CPF: {cpf}";
+            MessageBox.Show(mensagem);
+
+        }
+
+        private void campoEmail_TextChanged(object sender, EventArgs e)
+        {
+            string email = campoEmail.Text;
+            bool emailValido = Email_controller.IsValid(email);
+
+
+        }
+
+        private void campoCPF_TextChanged(object sender, EventArgs e)
+        {
+            string cpf = campoCPF.Text;
+            bool cpfValido = CPFController.ValidateCpf(cpf);
+
+        }
+
+        private void campoSenha1_TextChanged(object sender, EventArgs e)
+        {
+            string senha = campoSenha1.Text;
+            bool senhaValida = Password_controller.Verify(senha); 
+
+        }
+
+        private void campoSenha2_TextChanged(object sender, EventArgs e)
+        {
+            string senha = campoSenha2.Text;
+            bool senhaValida = Password_controller.Verify(senha); 
+        
         }
     }
 }

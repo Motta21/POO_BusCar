@@ -63,6 +63,16 @@ namespace POO_Buscarr.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Botao_Cadastrar_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Botao_Cadastrar-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnCadastrar {
             get {
                 object obj = ResourceManager.GetObject("btnCadastrar", resourceCulture);
