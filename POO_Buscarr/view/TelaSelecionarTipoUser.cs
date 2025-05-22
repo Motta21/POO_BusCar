@@ -17,9 +17,23 @@ namespace POO_Buscarr.view
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
+        private void btnSouAdministrador_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Login como administrador");
+            this.Hide();
+            var telaDigitarCnpj = new TelaDigitarCnpj();
+            telaDigitarCnpj.FormClosed += (s, args) => this.Close();
+            telaDigitarCnpj.Show();
+        }
+
+        private void btnSouMotorista_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Login como motorista");
+            this.Hide();
+            var telaDigitarCnh = new TelaDigitarCnh();
+            telaDigitarCnh.FormClosed += (s, args) => this.Close();
+            telaDigitarCnh.Show();
         }
     }
 }

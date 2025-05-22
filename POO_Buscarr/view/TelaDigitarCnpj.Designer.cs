@@ -42,6 +42,7 @@
             this.campoCnpjCadastro.Name = "campoCnpjCadastro";
             this.campoCnpjCadastro.Size = new System.Drawing.Size(619, 73);
             this.campoCnpjCadastro.TabIndex = 8;
+            this.campoCnpjCadastro.TextChanged += new System.EventHandler(this.campoCnpjCadastro_TextChanged);
             // 
             // btnConfirmar
             // 
@@ -56,6 +57,7 @@
             this.btnConfirmar.Size = new System.Drawing.Size(437, 90);
             this.btnConfirmar.TabIndex = 9;
             this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // TelaDigitarCnpj
             // 

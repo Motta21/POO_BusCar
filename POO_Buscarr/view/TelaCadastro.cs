@@ -123,7 +123,7 @@ namespace POO_Buscarr.view
 
             if (db.OpenConnection())
             {
-                string sql = "INSERT INTO admin (nome, email, password, cnpj) VALUES (@nome, @email, @cpf, @senha)";
+                string sql = "INSERT INTO admin (nome, email, password, cpf) VALUES (@nome, @email, @senha, @cpf)";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, db.GetConnection()))
                 {
@@ -139,6 +139,11 @@ namespace POO_Buscarr.view
                         if (resultado > 0)
                         {
                             MessageBox.Show("Usuário cadastrado com sucesso!");
+                            this.Hide();
+                            var telaLogin = new TelaLogin();
+                            telaLogin.FormClosed += (s, args) => this.Close();
+                            telaLogin.Show();
+
                         }
                         else
                         {
