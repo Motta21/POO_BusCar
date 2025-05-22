@@ -65,7 +65,7 @@ namespace POO_Buscarr.controller
 
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+                    string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 13);
 
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@email", email);
