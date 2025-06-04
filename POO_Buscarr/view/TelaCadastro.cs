@@ -116,56 +116,7 @@ namespace POO_Buscarr.view
                 MessageBox.Show("As senhas não coincidem.");
                 return;
             }
-
-            // Se tudo esta validade
-
-            Database db = new Database();
-
-            if (db.OpenConnection())
-            {
-                string sql = "INSERT INTO admin (nome, email, password, cpf) VALUES (@nome, @email, @senha, @cpf)";
-
-                using (MySqlCommand cmd = new MySqlCommand(sql, db.GetConnection()))
-                {
-                    cmd.Parameters.AddWithValue("@nome", nome);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@cpf", cpf);
-                    cmd.Parameters.AddWithValue("@senha", senha1); // Recomendo aplicar hash depois!
-
-                    try
-                    {
-                        int resultado = cmd.ExecuteNonQuery();
-
-                        if (resultado > 0)
-                        {
-                            MessageBox.Show("Usuário cadastrado com sucesso!");
-                            this.Hide();
-                            var telaLogin = new TelaLogin();
-                            telaLogin.FormClosed += (s, args) => this.Close();
-                            telaLogin.Show();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Erro ao cadastrar usuário.");
-                        }
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("Erro de banco: " + ex.Message);
-                    }
-                    finally
-                    {
-                        db.CloseConnection();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Não foi possível conectar ao banco.");
-            }
-
-
+            
 
             string mensagem = $"Usuário cadastrado com sucesso!\n\n" +
                               $"Nome: {nome}\n" +
