@@ -6,3 +6,4 @@ obj/
 *.vsidx
 *.dbmdl
 *.log
+.vscode/

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POO_Buscarr.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace POO_Buscarr.model
 {
-    internal class Car
+    public class Car
     {
-        private string model { get; set;}
-        private string brand { get; set; }
-        private string renavan { get; set; }
+        private string model { get; set; }
         private string plate { get; set; }
-        private string situation { get; set; }
+        private string renavan { get; set; }
+        private CarSituation situation { get; set; }
 
-        public Car(string model, string brand, string renavan, string plate, string situation)
+        public Car(string model, string plate, string revanan, CarSituation situation)
         {
             this.model = model;
-            this.brand = brand;
-            this.renavan = renavan;
             this.plate = plate;
-            this.situation = situation;
+            this.renavan = revanan;
+            this.situation = CarSituation.Available;
         }
     }
 }
