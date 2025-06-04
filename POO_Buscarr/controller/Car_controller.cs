@@ -1,175 +1,225 @@
-﻿using System;
+﻿using POO_Buscarr.database;
+using POO_Buscarr.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using POO_Buscarr.database;
-using POO_Buscarr.model;
 
 namespace POO_Buscarr.controller
 {
-    internal class Car_controller
+    public class Car_controller
     {
-        private readonly Database database;
+        private readonly Database _database;
 
-        public Car_controller()
+        public Car_controller(Database database)
         {
-            database = new Database();
+            _database = database;
         }
 
-        public void AddCar(string model, string brand, string plate, string renavan, string situation)
+        public bool AddCar(string model, string plate, string renavam)
         {
-            Car car = new Car(model, brand, plate, renavan, situation);
+            var car = new Car(model, plate, renavam, Model.CarSituation.Available);
             
-            if (!database.OpenConnection()) return;
-
-            string query = "INSERT INTO carro (modelo, marca, placa, renavan, status) VALUES (@model, @brand, @plate, @renavan, @status)";
-            
-            using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
-            {
-                cmd.Parameters.AddWithValue("@model", model);
-                cmd.Parameters.AddWithValue("@brand", brand);
-                cmd.Parameters.AddWithValue("@plate", plate);
-                cmd.Parameters.AddWithValue("@renavan", renavan);
-                cmd.Parameters.AddWithValue("@status", situation);
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    Console.WriteLine("Carro adicionado com sucesso.");
-                }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("Erro ao adicionar carro: " + ex.Message);
-                }
-                finally
-                {
-                    database.CloseConnection();
-                }
+            if (!validateRenavam(renavam))
+            {   
+                Console.WriteLine("RENAVAM inválido");
+                return false;
             }
-        }
 
-        public void UpdateCar(string model, string brand, string plate, string renavan, string situation)
-        {
-            if (!database.OpenConnection()) return;
+            _database.OpenConnection();
 
-            string query = "UPDATE carro SET modelo = @model, marca = @brand, placa = @plate, status = @situation WHERE renavan = @renavan";
-            
-            using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
+            try
             {
-                cmd.Parameters.AddWithValue("@model", model);
-                cmd.Parameters.AddWithValue("@brand", brand);
-                cmd.Parameters.AddWithValue("@plate", plate);
-                cmd.Parameters.AddWithValue("@situation", situation);
-                cmd.Parameters.AddWithValue("@renavan", renavan);
+                string query = "INSERT INTO carro (modelo, placa, renavam, status) VALUES (@model, @plate, @renavam, @situation)";
 
-                try
+                using (var command = _database.GetConnection().CreateCommand())
                 {
-                    cmd.ExecuteNonQuery();
-                    Console.WriteLine("Carro atualizado com sucesso.");
-                }
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@model", model);
+                    command.Parameters.AddWithValue("@plate", plate);
+                    command.Parameters.AddWithValue("@renavam", renavam);
+                    command.Parameters.AddWithValue("@situation", Model.CarSituation.Available.ToString());
 
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("Erro ao atualizar carro: " + ex.Message);
-                }
+                    int rowsAffected = command.ExecuteNonQuery();
 
-                finally
-                {
-                    database.CloseConnection();
+                    if (rowsAffected == 0)
+                    {
+                        Console.WriteLine("Nenhum carro foi adicionado.");
+                        return false;
+                    }
                 }
+                Console.WriteLine($"Carro {model} adicionado com sucesso.");
             }
-        }
-
-        public void DeleteCar(string renavan)
-        {
-            if (!database.OpenConnection()) return;
-
-            string query = "DELETE FROM carro WHERE renavan = @renavan";
-            
-            using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
+            catch (Exception ex)
             {
-                cmd.Parameters.AddWithValue("@renavan", renavan);
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    Console.WriteLine("Carro deletado com sucesso.");
-                }
-
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("Erro ao deletar carro: " + ex.Message);
-                }
-
-                finally
-                {
-                    database.CloseConnection();
-                }
+                Console.WriteLine($"Erro ao adicionar carro: {ex.Message}");
+                return false;
             }
+            finally
+            {
+                _database.CloseConnection();
+            }
+
+            return true;
         }
 
-        public void ListCars()
+        public List<Car> GetAllCars()
         {
-            if (!database.OpenConnection()) return;
-
-            string query = "SELECT * FROM carro";
-            
-            using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
+            List<Car> cars = new List<Car>();
+            _database.OpenConnection();
+            try
             {
-                try
+                string query = "SELECT * FROM carro";
+                using (var command = _database.GetConnection().CreateCommand())
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    command.CommandText = query;
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Console.WriteLine($"Modelo: {reader["modelo"]}, Marca: {reader["marca"]}, Renavan: {reader["renavan"]}, Placa: {reader["placa"]}, Situação: {reader["status"]}");
+                            var car = new Car(
+                                reader["modelo"].ToString(),
+                                reader["placa"].ToString(),
+                                reader["renavam"].ToString(),
+                                (Model.CarSituation)Enum.Parse(typeof(Model.CarSituation), reader["status"].ToString())
+                            );
+                            cars.Add(car);
                         }
                     }
                 }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("Erro ao listar carros: " + ex.Message);
-                }
-
-                finally
-                {
-                    database.CloseConnection();
-                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter carros: {ex.Message}");
+            }
+            finally
+            {
+                _database.CloseConnection();
+            }
+            return cars;
         }
 
-        public void SearchCar(string renavan)
+        public Car GetCarByPlate(string plate)
         {
-            if (!database.OpenConnection()) return;
-
-            string query = "SELECT * FROM carro WHERE renavan = @renavan";
-            
-            using (MySqlCommand cmd = new MySqlCommand(query, database.GetConnection()))
+            _database.OpenConnection();
+            try
             {
-                cmd.Parameters.AddWithValue("@renavan", renavan);
-                try
+                string query = "SELECT * FROM carro WHERE placa = @plate";
+                using (var command = _database.GetConnection().CreateCommand())
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@plate", plate);
+                    using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            Console.WriteLine($"Modelo: {reader["model"]}, Marca: {reader["brand"]}, Renavan: {reader["renavan"]}, Placa: {reader["plate"]}, Situação: {reader["situation"]}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Carro não encontrado.");
+                            return new Car(
+                                reader["modelo"].ToString(),
+                                reader["placa"].ToString(),
+                                reader["renavam"].ToString(),
+                                (Model.CarSituation)Enum.Parse(typeof(Model.CarSituation), reader["status"].ToString())
+                            );
                         }
                     }
                 }
-                catch (MySqlException ex)
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter carro: {ex.Message}");
+            }
+            finally
+            {
+                _database.CloseConnection();
+            }
+            return null;
+        }
+
+        public bool UpdateCarSituation(string plate, Model.CarSituation situation)
+        {
+            _database.OpenConnection();
+            try
+            {
+                string query = "UPDATE carro SET status = @situation WHERE placa = @plate";
+                using (var command = _database.GetConnection().CreateCommand())
                 {
-                    Console.WriteLine("Erro ao buscar carro: " + ex.Message);
-                }
-                finally
-                {
-                    database.CloseConnection();
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@situation", situation.ToString());
+                    command.Parameters.AddWithValue("@plate", plate);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine($"Situação do carro com placa {plate} atualizada para {situation}.");
+                        return true;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao atualizar situação do carro: {ex.Message}");
+            }
+            finally
+            {
+                _database.CloseConnection();
+            }
+            return false;
+        }
+
+        public bool DeleteCar(string plate)
+        {
+            _database.OpenConnection();
+            try
+            {
+                string query = "DELETE FROM carro WHERE placa = @plate";
+                using (var command = _database.GetConnection().CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@plate", plate);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine($"Carro com placa {plate} deletado com sucesso.");
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao deletar carro: {ex.Message}");
+            }
+            finally
+            {
+                _database.CloseConnection();
+            }
+            return false;
+        }
+
+
+        public static bool validateRenavam(string renavam)
+        {
+            if (string.IsNullOrEmpty(renavam)) return false;
+
+            // Remove caracteres não numéricos
+            string numericRenavam = Regex.Replace(renavam, "[^0-9]", "");
+
+            // O RENAVAM deve ter 11 dígitos
+            if (numericRenavam.Length != 11) return false;
+
+            // Verifica se todos os números são iguais (exemplo: "11111111111")
+            if (numericRenavam.Distinct().Count() == 1) return false;
+
+            // Sequência de multiplicação para cálculo do dígito verificador
+            int[] sequence = { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] digits = numericRenavam.Select(c => int.Parse(c.ToString())).ToArray();
+
+            // Calcula o dígito verificador
+            int sum = digits.Take(10).Select((digit, index) => digit * sequence[index]).Sum();
+            int remainder = (sum * 10) % 11;
+            int checkDigit = remainder == 10 ? 0 : remainder;
+
+            // Compara com o último dígito do RENAVAM
+            return checkDigit == digits[10];
         }
     }
 }
