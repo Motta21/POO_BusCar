@@ -124,6 +124,24 @@
     <Compile Include="view\TelaDigitarCnpj.Designer.cs">
       <DependentUpon>TelaDigitarCnpj.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\TelaRecuperarSenha_Codigo_Email.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha_Codigo_Email.Designer.cs">
+      <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha_Email.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha_Email.Designer.cs">
+      <DependentUpon>TelaRecuperarSenha_Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha_Nova_Senha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha_Nova_Senha.Designer.cs">
+      <DependentUpon>TelaRecuperarSenha_Nova_Senha.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaSelecionarTipoUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="view\TelaRecuperarSenha_Codigo_Email.resx">
+      <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaRecuperarSenha_Email.resx">
+      <DependentUpon>TelaRecuperarSenha_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaRecuperarSenha_Nova_Senha.resx">
+      <DependentUpon>TelaRecuperarSenha_Nova_Senha.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\TelaSelecionarTipoUser.resx">
       <DependentUpon>TelaSelecionarTipoUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +239,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Botao_Cadastrar-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Redefinir Senha %28Colocar email%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Redefinir Senha %28Colocar Código%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Criar Nova Senha.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

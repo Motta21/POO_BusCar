@@ -83,6 +83,36 @@ namespace POO_Buscarr.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Criar_Nova_Senha {
+            get {
+                object obj = ResourceManager.GetObject("Criar Nova Senha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Redefinir_Senha__Colocar_Código_ {
+            get {
+                object obj = ResourceManager.GetObject("Redefinir Senha (Colocar Código)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Redefinir_Senha__Colocar_email_ {
+            get {
+                object obj = ResourceManager.GetObject("Redefinir Senha (Colocar email)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tela_de_Cadastro {
             get {
                 object obj = ResourceManager.GetObject("Tela de Cadastro", resourceCulture);
