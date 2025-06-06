@@ -37,40 +37,44 @@
             // 
             this.btn_redefinir_senha.BackColor = System.Drawing.Color.Transparent;
             this.btn_redefinir_senha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_redefinir_senha.Location = new System.Drawing.Point(1058, 736);
+            this.btn_redefinir_senha.Location = new System.Drawing.Point(1411, 906);
+            this.btn_redefinir_senha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_redefinir_senha.Name = "btn_redefinir_senha";
-            this.btn_redefinir_senha.Size = new System.Drawing.Size(442, 92);
+            this.btn_redefinir_senha.Size = new System.Drawing.Size(589, 113);
             this.btn_redefinir_senha.TabIndex = 0;
             this.btn_redefinir_senha.UseVisualStyleBackColor = false;
             // 
             // lbl_redefinir_senha
             // 
             this.lbl_redefinir_senha.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_redefinir_senha.Location = new System.Drawing.Point(962, 429);
+            this.lbl_redefinir_senha.Location = new System.Drawing.Point(1283, 528);
+            this.lbl_redefinir_senha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbl_redefinir_senha.Name = "lbl_redefinir_senha";
-            this.lbl_redefinir_senha.Size = new System.Drawing.Size(634, 44);
+            this.lbl_redefinir_senha.Size = new System.Drawing.Size(844, 53);
             this.lbl_redefinir_senha.TabIndex = 1;
             // 
             // lbl_confirmar_redefinir_senha
             // 
             this.lbl_confirmar_redefinir_senha.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_confirmar_redefinir_senha.Location = new System.Drawing.Point(962, 569);
+            this.lbl_confirmar_redefinir_senha.Location = new System.Drawing.Point(1283, 700);
+            this.lbl_confirmar_redefinir_senha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbl_confirmar_redefinir_senha.Name = "lbl_confirmar_redefinir_senha";
-            this.lbl_confirmar_redefinir_senha.Size = new System.Drawing.Size(634, 44);
+            this.lbl_confirmar_redefinir_senha.Size = new System.Drawing.Size(844, 53);
             this.lbl_confirmar_redefinir_senha.TabIndex = 2;
             // 
             // TelaRecuperarSenha_Nova_Senha
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cornsilk;
-            this.BackgroundImage = global::POO_Buscarr.Properties.Resources.Criar_Nova_Senha;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.BackgroundImage = global::POO_Buscarr.Properties.Resources.Tela_de_Redefinir_Senha__criar_nova_senha_;
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.lbl_confirmar_redefinir_senha);
             this.Controls.Add(this.lbl_redefinir_senha);
             this.Controls.Add(this.btn_redefinir_senha);
             this.Cursor = System.Windows.Forms.Cursors.No;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TelaRecuperarSenha_Nova_Senha";
             this.Text = "TelaRecuperarSenha_Nova_Senha";
             this.ResumeLayout(false);

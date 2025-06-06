@@ -124,6 +124,18 @@
     <Compile Include="view\TelaDigitarCnpj.Designer.cs">
       <DependentUpon>TelaDigitarCnpj.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\TelaPrincipalAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPrincipalAdministrador.Designer.cs">
+      <DependentUpon>TelaPrincipalAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaPrincipalMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPrincipalMotorista.Designer.cs">
+      <DependentUpon>TelaPrincipalMotorista.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaRecuperarSenha_Codigo_Email.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +196,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="view\TelaPrincipalAdministrador.resx">
+      <DependentUpon>TelaPrincipalAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaPrincipalMotorista.resx">
+      <DependentUpon>TelaPrincipalMotorista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\TelaRecuperarSenha_Codigo_Email.resx">
       <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +266,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Criar Nova Senha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tela de Menu Principal %28Motorista%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tela de Menu Principal %28Administrador%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tela de Cadastro1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tela de Redefinir Senha %28colocar email%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tela de Redefinir Senha %28criar nova senha%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

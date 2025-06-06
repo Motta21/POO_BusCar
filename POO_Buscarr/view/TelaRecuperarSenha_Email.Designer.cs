@@ -35,19 +35,21 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(1057, 632);
+            this.button1.Location = new System.Drawing.Point(1409, 778);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(444, 90);
+            this.button1.Size = new System.Drawing.Size(592, 111);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = false;
             // 
             // TelaRecuperarSenha_Email
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::POO_Buscarr.Properties.Resources.Redefinir_Senha__Colocar_email_;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.BackgroundImage = global::POO_Buscarr.Properties.Resources.Tela_de_Redefinir_Senha__colocar_email_;
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TelaRecuperarSenha_Email";
             this.Text = "TelaRecuperarSenha_Email";
             this.Load += new System.EventHandler(this.TelaRecuperarSenha_Email_Load);

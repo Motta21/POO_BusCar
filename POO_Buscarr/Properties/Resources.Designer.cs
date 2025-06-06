@@ -123,9 +123,59 @@ namespace POO_Buscarr.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Tela_de_Cadastro1 {
+            get {
+                object obj = ResourceManager.GetObject("Tela de Cadastro1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tela_de_Login {
             get {
                 object obj = ResourceManager.GetObject("Tela de Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tela_de_Menu_Principal__Administrador_ {
+            get {
+                object obj = ResourceManager.GetObject("Tela de Menu Principal (Administrador)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tela_de_Menu_Principal__Motorista_ {
+            get {
+                object obj = ResourceManager.GetObject("Tela de Menu Principal (Motorista)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tela_de_Redefinir_Senha__colocar_email_ {
+            get {
+                object obj = ResourceManager.GetObject("Tela de Redefinir Senha (colocar email)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tela_de_Redefinir_Senha__criar_nova_senha_ {
+            get {
+                object obj = ResourceManager.GetObject("Tela de Redefinir Senha (criar nova senha)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
