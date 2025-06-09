@@ -20,7 +20,7 @@ namespace POO_Buscarr.controller
 
         public bool AddCar(string model, string plate, string renavam)
         {
-            var car = new Car(model, plate, renavam, Model.CarSituation.Available);
+            var car = new Car(model, plate, renavam, CarSituation.Available);
             
             if (!validateRenavam(renavam))
             {   
@@ -40,7 +40,7 @@ namespace POO_Buscarr.controller
                     command.Parameters.AddWithValue("@model", model);
                     command.Parameters.AddWithValue("@plate", plate);
                     command.Parameters.AddWithValue("@renavam", renavam);
-                    command.Parameters.AddWithValue("@situation", Model.CarSituation.Available.ToString());
+                    command.Parameters.AddWithValue("@situation", CarSituation.Available.ToString());
 
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -83,7 +83,7 @@ namespace POO_Buscarr.controller
                                 reader["modelo"].ToString(),
                                 reader["placa"].ToString(),
                                 reader["renavam"].ToString(),
-                                (Model.CarSituation)Enum.Parse(typeof(Model.CarSituation), reader["status"].ToString())
+                                (CarSituation)Enum.Parse(typeof(CarSituation), reader["status"].ToString())
                             );
                             cars.Add(car);
                         }
@@ -119,7 +119,7 @@ namespace POO_Buscarr.controller
                                 reader["modelo"].ToString(),
                                 reader["placa"].ToString(),
                                 reader["renavam"].ToString(),
-                                (Model.CarSituation)Enum.Parse(typeof(Model.CarSituation), reader["status"].ToString())
+                                (CarSituation)Enum.Parse(typeof(CarSituation), reader["status"].ToString())
                             );
                         }
                     }
@@ -136,7 +136,7 @@ namespace POO_Buscarr.controller
             return null;
         }
 
-        public bool UpdateCarSituation(string plate, Model.CarSituation situation)
+        public bool UpdateCarSituation(string plate, CarSituation situation)
         {
             _database.OpenConnection();
             try

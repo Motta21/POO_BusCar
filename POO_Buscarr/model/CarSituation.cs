@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POO_Buscarr.Model
+namespace POO_Buscarr.model
 {
     public enum CarSituation
     {
