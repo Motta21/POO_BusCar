@@ -12,6 +12,7 @@ using MySql.Data.MySqlClient;
 using Mysqlx;
 using POO_Buscarr.controller;
 using POO_Buscarr.database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace POO_Buscarr.view
 {
@@ -28,11 +29,6 @@ namespace POO_Buscarr.view
             var telaLogin = new TelaLogin(); // Instancia o formulário de Cadastro
             telaLogin.FormClosed += (s, args) => this.Close(); // Fecha o formulário de Login quando o de Cadastro for fechado
             telaLogin.Show(); // Exibe o formulário de Cadastro
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -124,7 +120,40 @@ namespace POO_Buscarr.view
                               $"CPF: {cpf}";
             MessageBox.Show(mensagem);
 
+            if (checkBox1.Checked)
+            {
+                // Se o checkbox1 estiver marcado, abre Form1
+                TelaDigitarCnpj tela1 = new TelaDigitarCnpj();
+                tela1.Show();
+                this.Hide(); // Opcional: esconde a tela atual
+            }
+            else if (checkBox2.Checked)
+            {
+                // Se o checkbox2 estiver marcado, abre Form2
+                TelaDigitarCnh tela2 = new TelaDigitarCnh();
+                tela2.Show();
+                this.Hide(); // Opcional
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma das opções para continuar.");
+            }
+
+
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+                checkBox2.Checked = false;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+                checkBox1.Checked = false;
+        }
+
 
         private void campoEmail_TextChanged(object sender, EventArgs e)
         {
@@ -153,6 +182,11 @@ namespace POO_Buscarr.view
             string senha = campoSenha2.Text;
             bool senhaValida = Password_controller.Verify(senha); 
         
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
