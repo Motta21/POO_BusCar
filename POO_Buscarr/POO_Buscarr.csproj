@@ -109,9 +109,16 @@
     <Compile Include="controller\User_controller.cs" />
     <Compile Include="database\banco.cs" />
     <Compile Include="model\Admin.cs" />
+    <Compile Include="model\Aluno.cs" />
     <Compile Include="model\Driver.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="view\TelaPassageiros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPassageiros.Designer.cs">
+      <DependentUpon>TelaPassageiros.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaDigitarCnh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +203,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="view\TelaPassageiros.resx">
+      <DependentUpon>TelaPassageiros.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\TelaPrincipalAdministrador.resx">
       <DependentUpon>TelaPrincipalAdministrador.cs</DependentUpon>
     </EmbeddedResource>
