@@ -187,7 +187,19 @@ namespace POO_Buscarr.view
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox1.Checked)
+            {
+                checkBox2.Checked = false;
+            }
+           
+        }
 
+        private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                checkBox1.Checked = false;
+            }
         }
     }
 }
