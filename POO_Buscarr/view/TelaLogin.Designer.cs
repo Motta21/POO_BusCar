@@ -59,7 +59,7 @@ namespace POO_Buscarr
             this.campoEmailLogin.BackColor = System.Drawing.SystemColors.Window;
             this.campoEmailLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.campoEmailLogin.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.campoEmailLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F);
+            this.campoEmailLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.campoEmailLogin.ForeColor = System.Drawing.SystemColors.WindowText;
             this.campoEmailLogin.Location = new System.Drawing.Point(967, 416);
             this.campoEmailLogin.Name = "campoEmailLogin";
@@ -101,6 +101,7 @@ namespace POO_Buscarr
             this.campoSenhaLogin.Name = "campoSenhaLogin";
             this.campoSenhaLogin.Size = new System.Drawing.Size(623, 73);
             this.campoSenhaLogin.TabIndex = 9;
+            this.campoSenhaLogin.TextChanged += new System.EventHandler(this.campoSenhaLogin_TextChanged);
             // 
             // TelaLogin
             // 

@@ -193,6 +193,16 @@ namespace POO_Buscarr.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TelaCadastroAtualizada {
+            get {
+                object obj = ResourceManager.GetObject("TelaCadastroAtualizada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TelaDigiteCnh {
             get {
                 object obj = ResourceManager.GetObject("TelaDigiteCnh", resourceCulture);

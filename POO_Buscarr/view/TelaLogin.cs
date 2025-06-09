@@ -127,5 +127,10 @@ namespace POO_Buscarr
         {
 
         }
+
+        private void campoSenhaLogin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

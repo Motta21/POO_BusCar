@@ -282,5 +282,8 @@
   <ItemGroup>
     <None Include="Resources\Tela de Redefinir Senha %28criar nova senha%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TelaCadastroAtualizada.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
