@@ -15,6 +15,7 @@ namespace POO_Buscarr.view
         public TelaPrincipalAdministrador()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace POO_Buscarr.view
         public TelaPrincipalMotorista()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace POO_Buscarr.view
         public TelaCadastro()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void btnIrLogin_Click(object sender, EventArgs e)

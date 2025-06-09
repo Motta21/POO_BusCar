@@ -16,6 +16,7 @@ namespace POO_Buscarr.view
         public TelaDigitarCnh()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void campoCnhCadastro_TextChanged(object sender, EventArgs e)

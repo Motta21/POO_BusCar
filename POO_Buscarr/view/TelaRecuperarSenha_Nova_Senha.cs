@@ -15,6 +15,7 @@ namespace POO_Buscarr.view
         public TelaRecuperarSenha_Nova_Senha()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

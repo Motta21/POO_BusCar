@@ -15,6 +15,7 @@ namespace POO_Buscarr.view
         public TelaSelecionarTipoUser()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
 

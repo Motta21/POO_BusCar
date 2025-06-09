@@ -15,6 +15,7 @@ namespace POO_Buscarr.view
         public TelaRecuperarSenha_Email()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void TelaRecuperarSenha_Email_Load(object sender, EventArgs e)

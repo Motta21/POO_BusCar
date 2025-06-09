@@ -16,6 +16,7 @@ namespace POO_Buscarr.view
         public TelaDigitarCnpj()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void campoCnpjCadastro_TextChanged(object sender, EventArgs e)

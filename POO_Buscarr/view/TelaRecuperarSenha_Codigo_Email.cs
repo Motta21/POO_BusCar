@@ -15,6 +15,7 @@ namespace POO_Buscarr.view
         public TelaRecuperarSenha_Codigo_Email()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace POO_Buscarr
         public TelaLogin()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
