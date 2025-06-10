@@ -31,9 +31,5 @@ namespace POO_Buscarr.controller
             return true;
         }
 
-        internal static bool IsValid(string password)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

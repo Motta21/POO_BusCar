@@ -113,34 +113,42 @@ namespace POO_Buscarr.view
                 MessageBox.Show("As senhas não coincidem.");
                 return;
             }
-            
 
-            string mensagem = $"Usuário cadastrado com sucesso!\n\n" +
-                              $"Nome: {nome}\n" +
-                              $"E-mail: {email}\n" +
-                              $"CPF: {cpf}";
-            MessageBox.Show(mensagem);
 
-            if (checkBox1.Checked)
+            var db = new POO_Buscarr.database.Database();
+            var userController = new POO_Buscarr.controller.UserController(db);
+            bool cadastrado = userController.AddUser(nome, email, senha1, cpf);
+
+
+            if (cadastrado)
             {
-                // Se o checkbox1 estiver marcado, abre Form1
-                TelaDigitarCnpj tela1 = new TelaDigitarCnpj();
-                tela1.Show();
-                this.Hide(); // Opcional: esconde a tela atual
-            }
-            else if (checkBox2.Checked)
-            {
-                // Se o checkbox2 estiver marcado, abre Form2
-                TelaDigitarCnh tela2 = new TelaDigitarCnh();
-                tela2.Show();
-                this.Hide(); // Opcional
+                string mensagem = $"Usuário cadastrado com sucesso!\n\n" +
+                                  $"Nome: {nome}\n" +
+                                  $"E-mail: {email}\n" +
+                                  $"CPF: {cpf}";
+                MessageBox.Show(mensagem);
+
+                if (checkBox1.Checked)
+                {
+                    TelaDigitarCnpj tela1 = new TelaDigitarCnpj();
+                    tela1.Show();
+                    this.Hide();
+                }
+                else if (checkBox2.Checked)
+                {
+                    TelaDigitarCnh tela2 = new TelaDigitarCnh();
+                    tela2.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Selecione uma das opções para continuar.");
+                }
             }
             else
             {
-                MessageBox.Show("Selecione uma das opções para continuar.");
+                MessageBox.Show("Erro ao cadastrar usuário. Verifique os dados e tente novamente.");
             }
-
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

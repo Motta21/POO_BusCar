@@ -39,7 +39,7 @@ namespace POO_Buscarr.controller
                     return false;
                 }
 
-                if (!POO_Buscarr.controller.Password_controller.IsValid(password))
+                if (!POO_Buscarr.controller.Password_controller.Verify(password))
                 {
                     Console.WriteLine("Senha inválida!");
                     return false;
@@ -51,14 +51,14 @@ namespace POO_Buscarr.controller
                     return false;
                 }
 
-                string sql = @"INSERT INTO users (name, email, password, cpf) 
-                         VALUES (@name, @email, @password, @cpf)";
+                string sql = @"INSERT INTO usuarios (nome, email, senha, cpf) 
+                         VALUES (@nome, @email, @senha, @cpf)";
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
                     string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 13);
-                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@nome", name);
                     cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@password", hashedPassword);
+                    cmd.Parameters.AddWithValue("@senha", hashedPassword);
                     cmd.Parameters.AddWithValue("@cpf", cpf);
 
                     int affectedRows = cmd.ExecuteNonQuery();
@@ -153,7 +153,7 @@ namespace POO_Buscarr.controller
                 {
                     _database.OpenConnection();
                 }
-                string sql = "SELECT COUNT(1) FROM users WHERE email = @email";
+                string sql = "SELECT COUNT(1) FROM usuarios WHERE email = @email";
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@email", email);
@@ -222,7 +222,7 @@ namespace POO_Buscarr.controller
             try
             {
                 _database.OpenConnection();
-                string sql = "SELECT id, name, email FROM users";
+                string sql = "SELECT id, nome, email FROM usuarios";
 
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 using (var reader = cmd.ExecuteReader())
@@ -232,7 +232,7 @@ namespace POO_Buscarr.controller
                         users.Add(new User
                         {
                             Id = reader.GetInt32("id"),
-                            Name = reader.GetString("name"),
+                            Name = reader.GetString("nome"),
                             Email = reader.GetString("email")
                         });
                     }
@@ -255,7 +255,7 @@ namespace POO_Buscarr.controller
             try
             {
                 _database.OpenConnection();
-                string sql = "SELECT id, name, email FROM users WHERE id = @id";
+                string sql = "SELECT id, nome, email FROM usuarios WHERE id = @id";
 
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
@@ -268,7 +268,7 @@ namespace POO_Buscarr.controller
                             return new User
                             {
                                 Id = reader.GetInt32("id"),
-                                Name = reader.GetString("name"),
+                                Name = reader.GetString("nome"),
                                 Email = reader.GetString("email")
                             };
                         }
@@ -292,11 +292,11 @@ namespace POO_Buscarr.controller
             try
             {
                 _database.OpenConnection();
-                string sql = "UPDATE admin SET name = @name, email = @email WHERE id = @id";
+                string sql = "UPDATE admin SET nome = @nome, email = @email WHERE id = @id";
 
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@name", newName);
+                    cmd.Parameters.AddWithValue("@nome", newName);
                     cmd.Parameters.AddWithValue("@email", newEmail);
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -320,11 +320,11 @@ namespace POO_Buscarr.controller
             try
             {
                 _database.OpenConnection();
-                string sql = "UPDATE motorista SET name = @name, email = @email WHERE id = @id";
+                string sql = "UPDATE motorista SET nome = @nome, email = @email WHERE id = @id";
 
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@name", newName);
+                    cmd.Parameters.AddWithValue("@nome", newName);
                     cmd.Parameters.AddWithValue("@email", newEmail);
                     cmd.Parameters.AddWithValue("@id", id);
 
