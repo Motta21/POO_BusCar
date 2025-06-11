@@ -65,7 +65,6 @@ namespace POO_Buscarr
             this.campoEmailLogin.Name = "campoEmailLogin";
             this.campoEmailLogin.Size = new System.Drawing.Size(623, 73);
             this.campoEmailLogin.TabIndex = 5;
-            this.campoEmailLogin.TextChanged += new System.EventHandler(this.campoEmailLogin_TextChanged);
             // 
             // pictureBox1
             // 
@@ -89,7 +88,7 @@ namespace POO_Buscarr
             this.btnIrCadastro.Size = new System.Drawing.Size(437, 40);
             this.btnIrCadastro.TabIndex = 8;
             this.btnIrCadastro.UseVisualStyleBackColor = false;
-            this.btnIrCadastro.Click += new System.EventHandler(this.button1_Click);
+            this.btnIrCadastro.Click += new System.EventHandler(this.btnIrCadastro_Click_1);
             // 
             // campoSenhaLogin
             // 
@@ -101,7 +100,7 @@ namespace POO_Buscarr
             this.campoSenhaLogin.Name = "campoSenhaLogin";
             this.campoSenhaLogin.Size = new System.Drawing.Size(623, 73);
             this.campoSenhaLogin.TabIndex = 9;
-            this.campoSenhaLogin.TextChanged += new System.EventHandler(this.campoSenhaLogin_TextChanged);
+            this.campoSenhaLogin.UseSystemPasswordChar = true;
             // 
             // TelaLogin
             // 

@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace POO_Buscarr.view
 {
-    public partial class TelaSelecionarTipoUser: Form
+    public partial class TelaSelecionarTipoUser : Form
     {
+        private int UserId;
+
         public TelaSelecionarTipoUser()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace POO_Buscarr.view
         {
             MessageBox.Show("Login como administrador");
             this.Hide();
-            var telaDigitarCnpj = new TelaDigitarCnpj();
+            var telaDigitarCnpj = new TelaDigitarCnpj(UserId);
             telaDigitarCnpj.FormClosed += (s, args) => this.Close();
             telaDigitarCnpj.Show();
         }
@@ -32,7 +34,7 @@ namespace POO_Buscarr.view
         {
             MessageBox.Show("Login como motorista");
             this.Hide();
-            var telaDigitarCnh = new TelaDigitarCnh();
+            var telaDigitarCnh = new TelaDigitarCnh(UserId);
             telaDigitarCnh.FormClosed += (s, args) => this.Close();
             telaDigitarCnh.Show();
         }

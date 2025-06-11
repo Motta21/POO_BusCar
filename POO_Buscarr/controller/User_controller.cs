@@ -20,55 +20,60 @@ namespace POO_Buscarr.controller
             _database = database;
         }
 
-        public bool AddUser(string name, string email, string password, string cpf)
+        public int AddUser(string nome, string email, string senha, string cpf)
         {
             try
             {
                 _database.OpenConnection();
-                // Validação de email
-                if (!POO_Buscarr.controller.Email_controller.IsValid(email))
+
+                // Validação de e-mail
+                if (!Email_controller.IsValid(email))
                 {
                     Console.WriteLine("Email inválido!");
-                    return false;
+                    return -1;
                 }
 
-                // Verifica email duplicado
+                // Verifica se o e-mail já está em uso
                 if (EmailExists(email))
                 {
                     Console.WriteLine("Email já está em uso!");
-                    return false;
+                    return -1;
                 }
 
-                if (!POO_Buscarr.controller.Password_controller.Verify(password))
+                // Validação de senha
+                if (!Password_controller.Verify(senha))
                 {
                     Console.WriteLine("Senha inválida!");
-                    return false;
+                    return -1;
                 }
 
-                if (!POO_Buscarr.controller.CPFController.ValidateCpf(cpf))
+                // Validação de CPF
+                if (!CPFController.ValidateCpf(cpf))
                 {
                     Console.WriteLine("CPF inválido!");
-                    return false;
+                    return -1;
                 }
 
-                string sql = @"INSERT INTO usuarios (nome, email, senha, cpf) 
-                         VALUES (@nome, @email, @senha, @cpf)";
+                // Criptografa a senha
+                string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(senha, 13);
+
+                // Comando SQL de inserção
+                string sql = "INSERT INTO usuarios (nome, email, senha, cpf) VALUES (@nome, @email, @senha, @cpf)";
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
-                    string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 13);
-                    cmd.Parameters.AddWithValue("@nome", name);
+                    cmd.Parameters.AddWithValue("@nome", nome);
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@senha", hashedPassword);
                     cmd.Parameters.AddWithValue("@cpf", cpf);
 
-                    int affectedRows = cmd.ExecuteNonQuery();
-                    return affectedRows > 0;
+                    cmd.ExecuteNonQuery();
+                    return (int)cmd.LastInsertedId; // Retorna o ID do usuário recém-inserido
                 }
             }
             catch (MySqlException ex)
             {
                 Console.WriteLine($"Erro ao adicionar usuário: {ex.Message}");
-                return false;
+                return -1;
             }
             finally
             {
@@ -76,33 +81,31 @@ namespace POO_Buscarr.controller
             }
         }
 
-        public bool AddAdminUser(string cnpj)
+        public bool AddAdminUser(int userId, string cnpj)
         {
             try
             {
                 _database.OpenConnection();
 
-                // Validação de CNPJ
                 if (!CNPJController.ValidateCnpj(cnpj) || !CNPJController.IsNotKnownInvalid(cnpj))
                 {
                     Console.WriteLine("CNPJ inválido!");
                     return false;
                 }
 
-                string sql = @"INSERT INTO admin (cnpj) 
-                         VALUES (@cnpj)";
-
-                using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
+                string insertAdminSql = "INSERT INTO admin (id, cnpj) VALUES (@id, @cnpj)";
+                using (var cmdAdmin = new MySqlCommand(insertAdminSql, _database.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@cnpj", cnpj);
+                    cmdAdmin.Parameters.AddWithValue("@id", userId);
+                    cmdAdmin.Parameters.AddWithValue("@cnpj", cnpj);
 
-                    int affectedRows = cmd.ExecuteNonQuery();
+                    int affectedRows = cmdAdmin.ExecuteNonQuery();
                     return affectedRows > 0;
                 }
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Erro ao adicionar usuário admin: {ex.Message}");
+                Console.WriteLine($"Erro ao adicionar admin: {ex.Message}");
                 return false;
             }
             finally
@@ -111,7 +114,7 @@ namespace POO_Buscarr.controller
             }
         }
 
-        public bool AddDriverUser(string cnh)
+        public bool AddDriverUser(int userId, string cnh)
         {
             try
             {
@@ -123,11 +126,10 @@ namespace POO_Buscarr.controller
                     return false;
                 }
 
-                string sql = @"INSERT INTO motorista (cnh) 
-                         VALUES (@cnh)";
-
+                string sql = "INSERT INTO motorista (id, cnh) VALUES (@id, @cnh)";
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
+                    cmd.Parameters.AddWithValue("@id", userId);
                     cmd.Parameters.AddWithValue("@cnh", cnh);
 
                     int affectedRows = cmd.ExecuteNonQuery();
@@ -144,6 +146,7 @@ namespace POO_Buscarr.controller
                 _database.CloseConnection();
             }
         }
+
 
         private bool EmailExists(string email)
         {

@@ -42,7 +42,6 @@
             this.campoCnpjCadastro.Name = "campoCnpjCadastro";
             this.campoCnpjCadastro.Size = new System.Drawing.Size(619, 73);
             this.campoCnpjCadastro.TabIndex = 8;
-            this.campoCnpjCadastro.TextChanged += new System.EventHandler(this.campoCnpjCadastro_TextChanged);
             // 
             // btnConfirmar
             // 

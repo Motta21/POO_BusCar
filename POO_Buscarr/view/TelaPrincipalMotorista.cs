@@ -12,10 +12,14 @@ namespace POO_Buscarr.view
 {
     public partial class TelaPrincipalMotorista : Form
     {
-        public TelaPrincipalMotorista()
+        private int _userId;
+
+        public TelaPrincipalMotorista(int userId)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            _userId = userId;
+
         }
     }
 }

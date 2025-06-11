@@ -1,40 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using POO_Buscarr.controller;
+using POO_Buscarr.database;
 
 namespace POO_Buscarr.view
 {
-    public partial class TelaDigitarCnpj: Form
+    public partial class TelaDigitarCnpj : Form
     {
-        public TelaDigitarCnpj()
+        private readonly UserController _userController;
+        private int _userId;
+
+        public TelaDigitarCnpj(int userId)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-        }
 
-        private void campoCnpjCadastro_TextChanged(object sender, EventArgs e)
-        {
-            
+            // Inicialização igual ao cadastro
+            var db = new POO_Buscarr.database.Database();
+            _userController = new POO_Buscarr.controller.UserController(db);
+            _userId = userId;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            string cnpj = campoCnpjCadastro.Text;
-            bool cnpjValido = CNPJController.ValidateCnpj(cnpj);
-            if (cnpjValido)
+            string cnpj = campoCnpjCadastro.Text.Trim();
+
+            if (string.IsNullOrEmpty(cnpj))
             {
-                MessageBox.Show("CNPJ válidO.");
+                MessageBox.Show("Por favor, digite um CNPJ.");
+                return;
             }
-            else
+
+            try
             {
-                MessageBox.Show("CNPJ inválidO.");
+                bool cadastroSucesso = _userController.AddAdminUser(_userId, cnpj);
+
+                if (cadastroSucesso)
+                {
+                    MessageBox.Show("Admin cadastrado com sucesso!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Falha no cadastro. CNPJ pode ser inválido ou já existente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}");
             }
         }
     }

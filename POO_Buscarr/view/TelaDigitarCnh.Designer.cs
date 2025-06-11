@@ -42,7 +42,6 @@
             this.campoCnhCadastro.Name = "campoCnhCadastro";
             this.campoCnhCadastro.Size = new System.Drawing.Size(625, 73);
             this.campoCnhCadastro.TabIndex = 8;
-            this.campoCnhCadastro.TextChanged += new System.EventHandler(this.campoCnhCadastro_TextChanged);
             // 
             // btnConfirmar
             // 

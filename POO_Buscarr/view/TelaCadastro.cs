@@ -117,7 +117,8 @@ namespace POO_Buscarr.view
 
             var db = new POO_Buscarr.database.Database();
             var userController = new POO_Buscarr.controller.UserController(db);
-            bool cadastrado = userController.AddUser(nome, email, senha1, cpf);
+            int userId = userController.AddUser(nome, email, senha1, cpf);
+            bool cadastrado = userId > 0;
 
 
             if (cadastrado)
@@ -128,15 +129,16 @@ namespace POO_Buscarr.view
                                   $"CPF: {cpf}";
                 MessageBox.Show(mensagem);
 
-                if (checkBox1.Checked)
+                if (checkBox2.Checked)
                 {
-                    TelaDigitarCnpj tela1 = new TelaDigitarCnpj();
+
+                    TelaDigitarCnpj tela1 = new TelaDigitarCnpj(userId);
                     tela1.Show();
                     this.Hide();
                 }
-                else if (checkBox2.Checked)
+                else if (checkBox1.Checked)
                 {
-                    TelaDigitarCnh tela2 = new TelaDigitarCnh();
+                    TelaDigitarCnh tela2 = new TelaDigitarCnh(userId);
                     tela2.Show();
                     this.Hide();
                 }

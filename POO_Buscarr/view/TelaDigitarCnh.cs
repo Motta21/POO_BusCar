@@ -1,40 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using POO_Buscarr.controller;
+using POO_Buscarr.database;
 
 namespace POO_Buscarr.view
 {
-    public partial class TelaDigitarCnh: Form
+    public partial class TelaDigitarCnh : Form
     {
-        public TelaDigitarCnh()
+        private readonly UserController _userController;
+
+        private int _userId;
+
+        public TelaDigitarCnh(int userId)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-        }
 
-        private void campoCnhCadastro_TextChanged(object sender, EventArgs e)
-        {
-            
+            // Inicialização igual ao cadastro
+            var db = new POO_Buscarr.database.Database();
+            _userController = new POO_Buscarr.controller.UserController(db);
+            _userId = userId;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            string cnh = campoCnhCadastro.Text;
-            bool cnhValida = CNHController.ValidateCnh(cnh);
-            if (cnhValida)
+            string cnh = campoCnhCadastro.Text.Trim();
+
+            if (string.IsNullOrEmpty(cnh))
             {
-                MessageBox.Show("CNH válida.");
+                MessageBox.Show("Por favor, digite uma CNH.");
+                return;
             }
-            else
+
+            try
             {
-                MessageBox.Show("CNH inválida.");
+                bool cadastroSucesso = _userController.AddDriverUser(_userId, cnh);
+
+                if (cadastroSucesso)
+                {
+                    MessageBox.Show("Motorista cadastrado com sucesso!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Falha no cadastro. CNH pode ser inválida ou já existente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}");
             }
         }
     }
