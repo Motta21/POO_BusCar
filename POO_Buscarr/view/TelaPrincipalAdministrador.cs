@@ -23,5 +23,15 @@ namespace POO_Buscarr.view
 
     }
 
-}
+        private void TelaPrincipalAdministrador_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            TelaPassageiros telaPassageiros = new TelaPassageiros();
+            telaPassageiros.ShowDialog(); // ShowDialog() para abrir como janela modal
+        }
+    }
 }

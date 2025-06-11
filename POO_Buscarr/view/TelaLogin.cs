@@ -29,6 +29,7 @@ namespace POO_Buscarr
 
         }
 
+     
         private void btnFazerLogin_Click(object sender, EventArgs e)
         {
             string Email = campoEmailLogin.Text;
@@ -55,37 +56,38 @@ namespace POO_Buscarr
             {
                 try
                 {
-                    string query = "SELECT senha FROM usuarios WHERE email = @Email";
+                    string query = "SELECT id, senha FROM usuarios WHERE email = @Email";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, db.GetConnection()))
                     {
                         cmd.Parameters.AddWithValue("@Email", Email);
-                        object result = cmd.ExecuteScalar();
-
-                        if (result != null)
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            string senhaHash = result.ToString();
-
-                            // Verifica se a senha digitada corresponde ao hash no banco
-                            bool senhaValida = BCrypt.Net.BCrypt.EnhancedVerify(Senha, senhaHash);
-
-                            if (senhaValida)
+                            if (reader.Read())
                             {
-                                MessageBox.Show("Login realizado com sucesso!", "Sucesso");
-                                this.Hide();
+                                int userId = reader.GetInt32("id");
+                                string senhaHash = reader.GetString("senha");
 
-                                var TelaSelecionarTipoUser = new TelaSelecionarTipoUser();
-                                TelaSelecionarTipoUser.FormClosed += (s, args) => this.Close();
-                                TelaSelecionarTipoUser.Show();
+                                bool senhaValida = BCrypt.Net.BCrypt.EnhancedVerify(Senha, senhaHash);
+
+                                if (senhaValida)
+                                {
+                                    MessageBox.Show("Login realizado com sucesso!", "Sucesso");
+                                    this.Hide();
+
+                                    var telaPrincipal = new TelaPrincipalAdministrador(userId);
+                                    telaPrincipal.FormClosed += (s, args) => this.Close();
+                                    telaPrincipal.Show();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Senha incorreta.", "Erro");
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("Senha incorreta.", "Erro");
+                                MessageBox.Show("E-mail não encontrado.", "Erro");
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("E-mail não encontrado.", "Erro");
                         }
                     }
                 }
@@ -103,6 +105,9 @@ namespace POO_Buscarr
                 MessageBox.Show("Erro ao conectar ao banco de dados.", "Erro");
             }
         }
+
+
+
 
 
         private void label1_Click(object sender, EventArgs e)

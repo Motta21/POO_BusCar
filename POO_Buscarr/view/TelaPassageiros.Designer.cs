@@ -22,6 +22,8 @@
             this.dgvPassageiros = new System.Windows.Forms.DataGridView();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.Editar = new System.Windows.Forms.Button();
+            this.Adicionar = new System.Windows.Forms.Button();
             this.painelTopo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPassageiros)).BeginInit();
             this.SuspendLayout();
@@ -57,8 +59,6 @@
             // 
             // btnBuscar
             // 
-
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             this.btnBuscar.BackColor = System.Drawing.Color.Gold;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -68,6 +68,7 @@
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnAtualizar
             // 
@@ -105,8 +106,6 @@
             // 
             // btnExportar
             // 
-
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             this.btnExportar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportar.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -117,11 +116,10 @@
             this.btnExportar.TabIndex = 5;
             this.btnExportar.Text = "Exportar Lista";
             this.btnExportar.UseVisualStyleBackColor = false;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnVoltar
             // 
-
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             this.btnVoltar.BackColor = System.Drawing.Color.LightGray;
             this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoltar.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -131,6 +129,33 @@
             this.btnVoltar.TabIndex = 6;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
+            // Editar
+            // 
+            this.Editar.BackColor = System.Drawing.Color.Gold;
+            this.Editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Editar.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.Editar.Location = new System.Drawing.Point(726, 98);
+            this.Editar.Name = "Editar";
+            this.Editar.Size = new System.Drawing.Size(120, 35);
+            this.Editar.TabIndex = 7;
+            this.Editar.Text = "Editar";
+            this.Editar.UseVisualStyleBackColor = false;
+            this.Editar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // Adicionar
+            // 
+            this.Adicionar.BackColor = System.Drawing.Color.Gold;
+            this.Adicionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Adicionar.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.Adicionar.Location = new System.Drawing.Point(852, 98);
+            this.Adicionar.Name = "Adicionar";
+            this.Adicionar.Size = new System.Drawing.Size(120, 35);
+            this.Adicionar.TabIndex = 8;
+            this.Adicionar.Text = "Adicionar";
+            this.Adicionar.UseVisualStyleBackColor = false;
+            this.Adicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // TelaPassageiros
             // 
@@ -138,6 +163,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1920, 1061);
+            this.Controls.Add(this.Adicionar);
+            this.Controls.Add(this.Editar);
             this.Controls.Add(this.painelTopo);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnBuscar);
@@ -166,5 +193,7 @@
         private System.Windows.Forms.DataGridView dgvPassageiros;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button Editar;
+        private System.Windows.Forms.Button Adicionar;
     }
 }

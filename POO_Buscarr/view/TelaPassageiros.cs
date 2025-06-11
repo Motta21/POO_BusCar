@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using POO_Buscarr.controller;
 using POO_Buscarr.model;
 
 namespace POO_Buscarr.view
@@ -49,6 +50,13 @@ namespace POO_Buscarr.view
             dgvPassageiros.ReadOnly = true;
             dgvPassageiros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+
+            var colId = new DataGridViewTextBoxColumn();
+            colId.Name = "Id";
+            colId.HeaderText = "ID";
+            colId.Visible = false;
+            dgvPassageiros.Columns.Add(colId);
+
             // Configurar colunas
             dgvPassageiros.Columns.Add("Nome", "Nome");
             dgvPassageiros.Columns.Add("Idade", "Idade");
@@ -65,7 +73,7 @@ namespace POO_Buscarr.view
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT nome_Aluno, idade, endereco, escola, nome_Responsavel, telefone_Responsavel FROM aluno";
+                    string query = "SELECT idAluno, nome_Aluno, idade, endereco, escola, nome_Responsavel, telefone_Responsavel FROM aluno";
                     MySqlCommand command = new MySqlCommand(query, connection);
 
                     using (MySqlDataReader reader = command.ExecuteReader())
@@ -75,8 +83,9 @@ namespace POO_Buscarr.view
                         while (reader.Read())
                         {
                             dgvPassageiros.Rows.Add(
+                                reader["idAluno"]?.ToString() ?? "",
                                 reader["nome_Aluno"]?.ToString() ?? "",
-                                int.TryParse(reader["idade"]?.ToString(), out int idade) ? idade.ToString() : "0",
+                                reader["idade"]?.ToString() ?? "",
                                 reader["endereco"]?.ToString() ?? "",
                                 reader["escola"]?.ToString() ?? "",
                                 reader["nome_Responsavel"]?.ToString() ?? "",
@@ -86,15 +95,12 @@ namespace POO_Buscarr.view
                     }
                 }
             }
-            catch (FormatException ex)
-            {
-                MessageBox.Show($"Erro de formato nos dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao carregar passageiros: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -191,5 +197,28 @@ namespace POO_Buscarr.view
         {
             this.Close();
         }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            var telaAdicionar = new TelaAdicionarAluno(connectionString, CarregarPassageiros);
+            telaAdicionar.ShowDialog();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvPassageiros.SelectedRows.Count == 0) return;
+
+            int idAluno = Convert.ToInt32(dgvPassageiros.SelectedRows[0].Cells["Id"].Value);
+            var alunoController = new AlunoController(connectionString);
+            var aluno = alunoController.ObterAlunoPorId(idAluno);
+
+            if (aluno != null)
+            {
+                var telaEditar = new TelaAdicionarAluno(connectionString, CarregarPassageiros, aluno);
+                telaEditar.ShowDialog();
+            }
+        }
+
+        
     }
 }
