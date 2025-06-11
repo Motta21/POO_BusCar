@@ -1,7 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using POO_Buscarr.controller;
+﻿using POO_Buscarr.controller;
 using POO_Buscarr.database;
+using POO_Buscarr.model;
+using System;
+using System.Windows.Forms;
 
 namespace POO_Buscarr.view
 {
@@ -39,7 +40,11 @@ namespace POO_Buscarr.view
                 if (cadastroSucesso)
                 {
                     MessageBox.Show("Motorista cadastrado com sucesso!");
-                    this.Close();
+
+                    this.Hide();
+                    var telaMotorista = new TelaPrincipalMotorista(_userId);
+                    telaMotorista.FormClosed += (s, args) => this.Close();
+                    telaMotorista.Show();               
                 }
                 else
                 {
