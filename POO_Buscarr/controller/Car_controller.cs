@@ -21,9 +21,9 @@ namespace POO_Buscarr.controller
         public bool AddCar(string model, string plate, string renavam)
         {
             var car = new Car(model, plate, renavam, CarSituation.Available);
-            
+
             if (!validateRenavam(renavam))
-            {   
+            {
                 Console.WriteLine("RENAVAM inválido");
                 return false;
             }

@@ -38,7 +38,10 @@ namespace POO_Buscarr.view
                 if (cadastroSucesso)
                 {
                     MessageBox.Show("Admin cadastrado com sucesso!");
-                    this.Close();
+                    this.Hide();
+                    var telaLogin = new TelaLogin();
+                    telaLogin.FormClosed += (s, args) => this.Close();
+                    telaLogin.Show();
                 }
                 else
                 {

@@ -102,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controller\Aluno_controller.cs" />
-    <Compile Include="controller\Carro_controller.cs" />
+    <Compile Include="controller\Car_controller.cs" />
     <Compile Include="controller\CNH_controller.cs" />
     <Compile Include="controller\CNPJ_controller.cs" />
     <Compile Include="controller\CPF_controller.cs" />
@@ -112,21 +112,28 @@
     <Compile Include="database\banco.cs" />
     <Compile Include="model\Admin.cs" />
     <Compile Include="model\Aluno.cs" />
-    <Compile Include="model\Carro.cs" />
+    <Compile Include="model\Car.cs" />
+    <Compile Include="model\CarSituation.cs" />
     <Compile Include="model\Driver.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="view\TelaAdicionarVeiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaAdicionarVeiculo.Designer.cs">
+      <DependentUpon>TelaAdicionarVeiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaVeiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaVeiculos.Designer.cs">
+      <DependentUpon>TelaVeiculos.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaAdicionarAluno.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\TelaAdicionarAluno.Designer.cs">
       <DependentUpon>TelaAdicionarAluno.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\TelaCarros.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaCarros.Designer.cs">
-      <DependentUpon>TelaCarros.cs</DependentUpon>
     </Compile>
     <Compile Include="view\TelaSelecionarTipoUser.cs">
       <SubType>Form</SubType>
