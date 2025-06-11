@@ -152,5 +152,10 @@ namespace POO_Buscarr
             telaCadastro.FormClosed += (s, args) => this.Close();
             telaCadastro.Show();
         }
+
+        private void campoEmailLogin_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

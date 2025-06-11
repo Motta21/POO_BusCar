@@ -64,9 +64,10 @@ namespace POO_Buscarr.view
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(1095, 942);
+            this.pictureBox1.Location = new System.Drawing.Point(1460, 1159);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(384, 35);
+            this.pictureBox1.Size = new System.Drawing.Size(512, 43);
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -79,9 +80,10 @@ namespace POO_Buscarr.view
             this.btn_cadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cadastrar.ForeColor = System.Drawing.Color.Transparent;
             this.btn_cadastrar.Image = global::POO_Buscarr.Properties.Resources.btnCadastrar;
-            this.btn_cadastrar.Location = new System.Drawing.Point(1060, 831);
+            this.btn_cadastrar.Location = new System.Drawing.Point(1413, 1023);
+            this.btn_cadastrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_cadastrar.Name = "btn_cadastrar";
-            this.btn_cadastrar.Size = new System.Drawing.Size(438, 89);
+            this.btn_cadastrar.Size = new System.Drawing.Size(584, 110);
             this.btn_cadastrar.TabIndex = 24;
             this.btn_cadastrar.UseVisualStyleBackColor = false;
             this.btn_cadastrar.Click += new System.EventHandler(this.btn_cadastrar_Click);
@@ -92,9 +94,10 @@ namespace POO_Buscarr.view
             this.campoNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.campoNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.campoNome.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.campoNome.Location = new System.Drawing.Point(968, 229);
+            this.campoNome.Location = new System.Drawing.Point(1291, 282);
+            this.campoNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.campoNome.Name = "campoNome";
-            this.campoNome.Size = new System.Drawing.Size(619, 55);
+            this.campoNome.Size = new System.Drawing.Size(825, 55);
             this.campoNome.TabIndex = 25;
             this.campoNome.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -108,9 +111,10 @@ namespace POO_Buscarr.view
             // 
             this.campoEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.campoEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.campoEmail.Location = new System.Drawing.Point(967, 347);
+            this.campoEmail.Location = new System.Drawing.Point(1289, 427);
+            this.campoEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.campoEmail.Name = "campoEmail";
-            this.campoEmail.Size = new System.Drawing.Size(619, 55);
+            this.campoEmail.Size = new System.Drawing.Size(825, 55);
             this.campoEmail.TabIndex = 26;
             this.campoEmail.TextChanged += new System.EventHandler(this.campoEmail_TextChanged);
             // 
@@ -118,9 +122,10 @@ namespace POO_Buscarr.view
             // 
             this.campoCPF.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.campoCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.campoCPF.Location = new System.Drawing.Point(967, 458);
+            this.campoCPF.Location = new System.Drawing.Point(1289, 564);
+            this.campoCPF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.campoCPF.Name = "campoCPF";
-            this.campoCPF.Size = new System.Drawing.Size(619, 55);
+            this.campoCPF.Size = new System.Drawing.Size(825, 55);
             this.campoCPF.TabIndex = 27;
             this.campoCPF.TextChanged += new System.EventHandler(this.campoCPF_TextChanged);
             // 
@@ -128,10 +133,11 @@ namespace POO_Buscarr.view
             // 
             this.campoSenha1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.campoSenha1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.campoSenha1.Location = new System.Drawing.Point(967, 574);
+            this.campoSenha1.Location = new System.Drawing.Point(1289, 706);
+            this.campoSenha1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.campoSenha1.Name = "campoSenha1";
             this.campoSenha1.PasswordChar = '*';
-            this.campoSenha1.Size = new System.Drawing.Size(619, 55);
+            this.campoSenha1.Size = new System.Drawing.Size(825, 55);
             this.campoSenha1.TabIndex = 28;
             this.campoSenha1.TextChanged += new System.EventHandler(this.campoSenha1_TextChanged);
             // 
@@ -139,10 +145,11 @@ namespace POO_Buscarr.view
             // 
             this.campoSenha2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.campoSenha2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
-            this.campoSenha2.Location = new System.Drawing.Point(967, 689);
+            this.campoSenha2.Location = new System.Drawing.Point(1289, 848);
+            this.campoSenha2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.campoSenha2.Name = "campoSenha2";
             this.campoSenha2.PasswordChar = '*';
-            this.campoSenha2.Size = new System.Drawing.Size(611, 55);
+            this.campoSenha2.Size = new System.Drawing.Size(815, 55);
             this.campoSenha2.TabIndex = 29;
             this.campoSenha2.TextChanged += new System.EventHandler(this.campoSenha2_TextChanged);
             // 
@@ -155,7 +162,8 @@ namespace POO_Buscarr.view
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(1404, 789);
+            this.checkBox2.Location = new System.Drawing.Point(1872, 971);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 31;
@@ -166,7 +174,8 @@ namespace POO_Buscarr.view
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(1179, 789);
+            this.checkBox1.Location = new System.Drawing.Point(1572, 971);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 32;
@@ -175,11 +184,11 @@ namespace POO_Buscarr.view
             // 
             // TelaCadastro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImage = global::POO_Buscarr.Properties.Resources.TelaCadastroAtualizada;
-            this.ClientSize = new System.Drawing.Size(1653, 936);
+            this.ClientSize = new System.Drawing.Size(1284, 701);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.campoSenha2);
@@ -189,6 +198,7 @@ namespace POO_Buscarr.view
             this.Controls.Add(this.campoNome);
             this.Controls.Add(this.btn_cadastrar);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TelaCadastro";
             this.Text = "TelaCadastro";
             ((System.ComponentModel.ISupportInitialize)(this.pbBotao)).EndInit();
