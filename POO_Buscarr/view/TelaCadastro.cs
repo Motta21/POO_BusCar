@@ -132,7 +132,7 @@ namespace POO_Buscarr.view
                 if (checkBox2.Checked)
                 {
 
-                    TelaDigitarCnpj tela1 = new TelaDigitarCnpj(userId);
+                    TelaDigitarCnpj tela1 = new TelaDigitarCnpj(userId, 1);
                     tela1.Show();
                     this.Hide();
                 }
