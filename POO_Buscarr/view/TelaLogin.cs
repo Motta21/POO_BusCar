@@ -25,76 +25,67 @@ namespace POO_Buscarr
 
         }
 
-     
+
         private void btnFazerLogin_Click(object sender, EventArgs e)
         {
             string Email = campoEmailLogin.Text;
             string Senha = campoSenhaLogin.Text;
 
-            bool validacao_email_login = Email_controller.IsValid(Email);
-            bool validacao_senha_login = Password_controller.Verify(Senha);
-
+            // Validações básicas
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha))
             {
-                MessageBox.Show("Há campos obrigatórios vazios :(", "Alerta");
+                MessageBox.Show("Preencha e-mail e senha!", "Erro");
                 return;
             }
 
-            if (!validacao_email_login || !validacao_senha_login)
+            if (!Email_controller.IsValid(Email) || !Password_controller.Verify(Senha))
             {
-                MessageBox.Show("Formato de e-mail ou senha inválido.", "Erro");
+                MessageBox.Show("E-mail ou senha inválidos.", "Erro");
                 return;
             }
 
-            Database db = new Database();
-
-            if (db.OpenConnection())
+            // Tenta fazer login
+            try
             {
-                try
+                using (Database db = new Database()) // ⚠️ Usando "using" para fechar conexão automaticamente
                 {
-                    string query = "SELECT id, senha FROM usuarios WHERE email = @Email";
+                    if (!db.OpenConnection())
+                    {
+                        MessageBox.Show("Erro ao conectar ao banco de dados.", "Erro");
+                        return;
+                    }
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, db.GetConnection()))
+                    // 1ª Consulta: Verifica e-mail e senha
+                    string queryLogin = "SELECT id, senha, nome, email, cpf FROM usuarios WHERE email = @Email";
+
+                    using (MySqlCommand cmd = new MySqlCommand(queryLogin, db.GetConnection()))
                     {
                         cmd.Parameters.AddWithValue("@Email", Email);
-                        using (var reader = cmd.ExecuteReader())
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                int userId = reader.GetInt32("id");
                                 string senhaHash = reader.GetString("senha");
-
                                 bool senhaValida = BCrypt.Net.BCrypt.EnhancedVerify(Senha, senhaHash);
 
                                 if (senhaValida)
                                 {
+                                    // Dados do usuário (já lidos na mesma query para evitar 2ª consulta)
+                                    User user = new User
+                                    {
+                                        Id = reader.GetInt32("id"),
+                                        Email = reader.GetString("email"),
+                                        Name = reader.GetString("nome"),
+                                        Cpf = reader.GetString("cpf")
+                                    };
+
+                                    POO_Buscarr.model.session.Session.Login(user);
+
                                     MessageBox.Show("Login realizado com sucesso!", "Sucesso");
                                     this.Hide();
 
-                                    string readQuery = "SELECT id, email, nome, cpf FROM usuarios WHERE id = @UserId";
-                                    using (MySqlCommand readCmd = new MySqlCommand(readQuery, db.GetConnection()))
-                                    {
-                                        readCmd.Parameters.AddWithValue("@UserId", userId);
-
-                                        using (MySqlDataReader userReader = readCmd.ExecuteReader())
-                                        {
-                                            if (reader.Read())
-                                            {
-                                                User user = new User
-                                                {
-                                                    Id = reader.GetInt32("id"),
-                                                    Email = reader.GetString("email"),
-                                                    Name = reader.GetString("nome"),
-                                                    Cpf = reader.GetString("cpf")
-                                                };
-
-                                                POO_Buscarr.model.session.Session.Login(user);
-                                            }
-                                        }
-                                    }
-
-
-                                    var telaPrincipal = new TelaPrincipalAdministrador(userId);
+                                    var telaPrincipal = new TelaPrincipalAdministrador(user.Id);
                                     telaPrincipal.FormClosed += (s, args) => this.Close();
                                     telaPrincipal.Show();
                                 }
@@ -105,23 +96,19 @@ namespace POO_Buscarr
                             }
                             else
                             {
-                                MessageBox.Show("E-mail não encontrado.", "Erro");
+                                MessageBox.Show("E-mail não cadastrado.", "Erro");
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao verificar login: " + ex.Message);
-                }
-                finally
-                {
-                    db.CloseConnection();
-                }
             }
-            else
+            catch (MySqlException ex)
             {
-                MessageBox.Show("Erro ao conectar ao banco de dados.", "Erro");
+                MessageBox.Show($"Erro no banco de dados: {ex.Message}", "Erro");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro inesperado: {ex.Message}", "Erro");
             }
         }
 

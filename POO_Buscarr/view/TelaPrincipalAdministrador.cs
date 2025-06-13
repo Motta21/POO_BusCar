@@ -1,59 +1,75 @@
 ﻿using POO_Buscarr.model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POO_Buscarr.view
-
 {
     public partial class TelaPrincipalAdministrador : Form
     {
-    private int _userId;
-    public TelaPrincipalAdministrador(int userId)
+        private int _userId;
+        private readonly string _connectionString = "server=localhost;database=buscard;uid=root;pwd=;";
+        public TelaPrincipalAdministrador(int userId, string connectionString) // Modificado construtor
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-        _userId = userId;
-
-    }
+            _userId = userId;
+            _connectionString = connectionString; // Armazena a connection string
+        }
+        public TelaPrincipalAdministrador(int userId) // Modificado construtor
+        {
+            InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            _userId = userId;
+        // Armazena a connection string
+        }
 
         private void TelaPrincipalAdministrador_Load(object sender, EventArgs e)
         {
-
+            // Código de inicialização adicional pode ser colocado aqui
         }
 
         private void pictureBox14_Click(object sender, EventArgs e)
         {
-            TelaPassageiros telaPassageiros = new TelaPassageiros();
-            telaPassageiros.ShowDialog(); // ShowDialog() para abrir como janela modal
+            try
+            {
+                var telaPassageiros = new TelaPassageiros();
+                telaPassageiros.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir tela de passageiros:\n{ex.Message}",
+                              "Erro",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+            }
         }
 
         private void pictureBox20_Click(object sender, EventArgs e)
         {
             try
             {
-                // Cria uma instância da tela de veículos
                 var telaVeiculos = new TelaVeiculos();
-
-                // Define a tela como filha do formulário principal (se aplicável)
-                telaVeiculos.MdiParent = this.MdiParent; // Opcional, se estiver usando MDI
-
-                // Exibe a tela de forma não-modal (permite trabalhar com outras telas)
                 telaVeiculos.Show();
-
-                // Alternativa para exibir como modal (bloqueia outras janelas até fechar)
-                // telaVeiculos.ShowDialog();
             }
             catch (Exception ex)
             {
-                // Tratamento de erro genérico
                 MessageBox.Show($"Erro ao abrir a tela de veículos:\n{ex.Message}",
+                               "Erro",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+            }
+        }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var telaAdicionar = new TelaAdicionarAluno(_connectionString);
+                telaAdicionar.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de aluno:\n{ex.Message}",
                                "Erro",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Error);

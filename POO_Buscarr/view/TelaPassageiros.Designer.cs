@@ -1,4 +1,6 @@
-﻿namespace POO_Buscarr.view
+﻿using System.Drawing;
+
+namespace POO_Buscarr.view
 {
     partial class TelaPassageiros
     {
@@ -156,6 +158,20 @@
             this.Adicionar.Text = "Adicionar";
             this.Adicionar.UseVisualStyleBackColor = false;
             this.Adicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            //
+            // Excluir
+            //
+            this.Adicionar.Name = "Excluir";
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnExcluir.BackColor = System.Drawing.Color.Gold;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Location = new Point(980, 98);
+            this.btnExcluir.Size = new Size(120, 35);
+            this.btnExcluir.TabIndex = 9;
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.Controls.Add(this.btnExcluir);
             // 
             // TelaPassageiros
             // 
@@ -195,5 +211,7 @@
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button Editar;
         private System.Windows.Forms.Button Adicionar;
+        private System.Windows.Forms.Button btnExcluir;
+
     }
 }

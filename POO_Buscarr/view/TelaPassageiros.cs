@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using POO_Buscarr.controller;
 using POO_Buscarr.model;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace POO_Buscarr.view
 {
@@ -18,6 +19,9 @@ namespace POO_Buscarr.view
             ConfigurePlaceholder();
             ConfigureDataGridView();
             CarregarPassageiros();
+            btnExcluir.Click += btnExcluir_Click; 
+            dgvPassageiros.CellDoubleClick += DgvPassageiros_CellDoubleClick;
+
         }
 
         private void ConfigurePlaceholder()
@@ -117,8 +121,15 @@ namespace POO_Buscarr.view
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT nome_Aluno, idade, endereco, escola, nome_Responsavel, telefone_Responsavel " +
-                                   "FROM aluno WHERE nome_Aluno LIKE @termo";
+                    string query = "SELECT idAluno, nome_Aluno, idade, endereco, escola, nome_Responsavel, telefone_Responsavel " +
+                                  "FROM aluno WHERE " +
+                                  "nome_Aluno LIKE @termo OR " +
+                                  "idade LIKE @termo OR " +
+                                  "endereco LIKE @termo OR " +
+                                  "escola LIKE @termo OR " +
+                                  "nome_Responsavel LIKE @termo OR " +
+                                  "telefone_Responsavel LIKE @termo";
+
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@termo", $"%{termoBusca}%");
 
@@ -129,12 +140,13 @@ namespace POO_Buscarr.view
                         while (reader.Read())
                         {
                             dgvPassageiros.Rows.Add(
-                                reader["nome_Aluno"].ToString(),
-                                reader["idade"].ToString(),
-                                reader["endereco"].ToString(),
-                                reader["escola"].ToString(),
-                                reader["nome_Responsavel"].ToString(),
-                                reader["telefone_Responsavel"].ToString()
+                                reader["idAluno"]?.ToString() ?? "", // Coluna Id (oculta)
+                                reader["nome_Aluno"]?.ToString() ?? "",
+                                reader["idade"]?.ToString() ?? "",
+                                reader["endereco"]?.ToString() ?? "",
+                                reader["escola"]?.ToString() ?? "",
+                                reader["nome_Responsavel"]?.ToString() ?? "",
+                                reader["telefone_Responsavel"]?.ToString() ?? ""
                             );
                         }
                     }
@@ -219,6 +231,72 @@ namespace POO_Buscarr.view
             }
         }
 
-        
+
+        private void DgvPassageiros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int idAluno = Convert.ToInt32(dgvPassageiros.Rows[e.RowIndex].Cells["Id"].Value);
+                var alunoController = new AlunoController(connectionString);
+                var aluno = alunoController.ObterAlunoPorId(idAluno);
+
+                if (aluno != null)
+                {
+                    var telaEditar = new TelaAdicionarAluno(connectionString, CarregarPassageiros, aluno);
+                    telaEditar.ShowDialog();
+                }
+            }
+        }
+
+        // Adicione este método à classe TelaPassageiros
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dgvPassageiros.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selecione um passageiro para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirm = MessageBox.Show("Deseja realmente excluir este passageiro?", "Confirmação",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    int idAluno = Convert.ToInt32(dgvPassageiros.SelectedRows[0].Cells["Id"].Value);
+
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string query = "DELETE FROM aluno WHERE idAluno = @id";
+
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@id", idAluno);
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Passageiro excluído com sucesso!", "Sucesso",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                CarregarPassageiros(); // Atualiza a lista
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nenhum passageiro foi excluído.", "Aviso",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao excluir passageiro:\n{ex.Message}", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
 }
