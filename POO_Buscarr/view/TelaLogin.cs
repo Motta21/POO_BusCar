@@ -1,18 +1,14 @@
 ﻿using POO_Buscarr.controller;
 using POO_Buscarr.view;
+using POO_Buscarr.model;
+using POO_Buscarr.database;
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using POO_Buscarr.database;
 using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using MySqlX.XDevAPI;
 
 namespace POO_Buscarr
 {
@@ -74,6 +70,29 @@ namespace POO_Buscarr
                                 {
                                     MessageBox.Show("Login realizado com sucesso!", "Sucesso");
                                     this.Hide();
+
+                                    string readQuery = "SELECT id, email, nome, cpf FROM usuarios WHERE id = @UserId";
+                                    using (MySqlCommand readCmd = new MySqlCommand(readQuery, db.GetConnection()))
+                                    {
+                                        readCmd.Parameters.AddWithValue("@UserId", userId);
+
+                                        using (MySqlDataReader userReader = readCmd.ExecuteReader())
+                                        {
+                                            if (reader.Read())
+                                            {
+                                                User user = new User
+                                                {
+                                                    Id = reader.GetInt32("id"),
+                                                    Email = reader.GetString("email"),
+                                                    Name = reader.GetString("nome"),
+                                                    Cpf = reader.GetString("cpf")
+                                                };
+
+                                                POO_Buscarr.model.session.Session.Login(user);
+                                            }
+                                        }
+                                    }
+
 
                                     var telaPrincipal = new TelaPrincipalAdministrador(userId);
                                     telaPrincipal.FormClosed += (s, args) => this.Close();
