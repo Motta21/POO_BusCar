@@ -1,15 +1,27 @@
 ﻿namespace POO_Buscarr.model.session
 {
-    public class Session
+    public static class Session
     {
-        private User loggedUser = null;
+        private static User loggedUser = null;
 
-        public User Login(User user) => loggedUser = user;
+        public static void Login(User user)
+        {
+            loggedUser = user;
+        }
 
-        public User Logout() => loggedUser = null;
+        public static void Logout()
+        {
+            loggedUser = null;
+        }
 
-        public User GetLoggedUser => loggedUser;
+        public static User GetLoggedUser()
+        {
+            return loggedUser;
+        }
 
-        public bool IsLoggedIn() => loggedUser != null;
+        public static bool IsLoggedIn()
+        {
+            return loggedUser != null;
+        }
     }
 }

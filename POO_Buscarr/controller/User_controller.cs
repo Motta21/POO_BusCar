@@ -1,12 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Generators;
+using MySqlX.XDevAPI;
 using POO_Buscarr.database;
 using POO_Buscarr.model;
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POO_Buscarr.controller
 {
