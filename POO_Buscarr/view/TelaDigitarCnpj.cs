@@ -11,7 +11,7 @@ namespace POO_Buscarr.view
         private int _userId;
         private short _userType;
 
-        public TelaDigitarCnpj(int userId, short userType)
+        public TelaDigitarCnpj(int userId)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -20,7 +20,6 @@ namespace POO_Buscarr.view
             var db = new POO_Buscarr.database.Database();
             _userController = new POO_Buscarr.controller.UserController(db);
             _userId = userId;
-            _userType = userType;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
