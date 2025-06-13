@@ -11,13 +11,15 @@ namespace POO_Buscarr.model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Cpf { get; set; }
         public string Password { get; set; }
 
-        public User(int userId, string name, string email, string password)
+        public User(int userId, string name, string email, string cpf, string password)
         {
             this.Id = userId;
             this.Name = name;
             this.Email = email;
+            this.Cpf = cpf;
             this.Password = password;
         }
 

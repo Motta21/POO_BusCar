@@ -10,7 +10,7 @@ namespace POO_Buscarr.model
     {
         private string cnh { get; set; }
         private string cpf { get; set; }
-        public Driver(int userId, string name, string email, string password, string cpf, string cnh) : base(userId, name, email, password)
+        public Driver(int userId, string name, string email, string password, string cpf, string cnh) : base(userId, name, email,cpf, password)
         {
             this.cnh = cnh;
             this.cpf = cpf;

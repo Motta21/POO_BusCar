@@ -9,6 +9,7 @@ namespace POO_Buscarr.view
     {
         private readonly UserController _userController;
         private int _userId;
+        private short _userType;
 
         public TelaDigitarCnpj(int userId)
         {

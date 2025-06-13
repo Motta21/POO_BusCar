@@ -9,7 +9,7 @@ namespace POO_Buscarr.model
     public class Monitor : User
     {
         private string cpf { get; set; }
-        public Monitor(int userId, string name, string email, string password, string cpf) : base(userId, name, email, password)
+        public Monitor(int userId, string name, string email, string password, string cpf) : base(userId, name, email,cpf, password)
         {
             this.cpf = cpf;
         }

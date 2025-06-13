@@ -1,4 +1,6 @@
-﻿namespace POO_Buscarr.view
+﻿using System.Drawing;
+
+namespace POO_Buscarr.view
 {
     partial class TelaVeiculos
     {
@@ -150,6 +152,21 @@
             this.Adicionar.TabIndex = 8;
             this.Adicionar.Text = "Adicionar";
             this.Adicionar.UseVisualStyleBackColor = false;
+            //
+            // Excluir
+            //
+            this.Adicionar.Name = "Excluir";
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnExcluir.BackColor = System.Drawing.Color.Gold;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Location = new Point(980, 98);
+            this.btnExcluir.Size = new Size(120, 35);
+            this.btnExcluir.TabIndex = 9;
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.Controls.Add(this.btnExcluir);
+
             // 
             // TelaVeiculos
             // 
@@ -178,6 +195,7 @@
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Panel painelTopo;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox txtBuscar;

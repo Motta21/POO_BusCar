@@ -1,12 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Generators;
+using MySqlX.XDevAPI;
 using POO_Buscarr.database;
 using POO_Buscarr.model;
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POO_Buscarr.controller
 {
@@ -100,6 +98,8 @@ namespace POO_Buscarr.controller
                     cmdAdmin.Parameters.AddWithValue("@cnpj", cnpj);
 
                     int affectedRows = cmdAdmin.ExecuteNonQuery();
+                    UpdateUserType(userId, 1);
+
                     return affectedRows > 0;
                 }
             }
@@ -108,6 +108,33 @@ namespace POO_Buscarr.controller
                 Console.WriteLine($"Erro ao adicionar admin: {ex.Message}");
                 return false;
             }
+            finally
+            {
+                _database.CloseConnection();
+            }
+        }
+
+        public void UpdateUserType(int userId, short userType)
+        {
+            try
+            {
+                _database.OpenConnection();
+
+                string sql = "INSERT INTO usuarios (tipoUser) VALUES (@tipoUser) WHERE id = @id";
+                using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
+                {
+                    cmd.Parameters.AddWithValue("@tipoUser", userType);
+                    cmd.Parameters.AddWithValue("@id", userId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Erro ao alterar o tipo do usuário: {ex.Message}");
+            }
+
             finally
             {
                 _database.CloseConnection();
@@ -133,6 +160,8 @@ namespace POO_Buscarr.controller
                     cmd.Parameters.AddWithValue("@cnh", cnh);
 
                     int affectedRows = cmd.ExecuteNonQuery();
+                    UpdateUserType(userId, 2);
+
                     return affectedRows > 0;
                 }
             }

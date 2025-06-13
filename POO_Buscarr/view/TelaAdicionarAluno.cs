@@ -26,6 +26,7 @@ namespace POO_Buscarr.view
             }
         }
 
+
         private void PreencherCamposEdicao()
         {
             txtNome.Text = _alunoEdicao.Nome;
@@ -69,7 +70,12 @@ namespace POO_Buscarr.view
                 if (sucesso)
                 {
                     MessageBox.Show("Aluno salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Chamada segura do callback (se existir)
                     _callbackAtualizacao?.Invoke();
+
+                    // Fecha o formulário em qualquer caso
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else

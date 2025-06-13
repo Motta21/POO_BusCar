@@ -14,12 +14,13 @@ namespace POO_Buscarr.model
         private string renavan { get; set; }
         private CarSituation situation { get; set; }
 
-        public Car(string model, string plate, string revanan, CarSituation situation)
+        public Car(string model, string plate, string renavam, CarSituation situation)
         {
             this.model = model;
             this.Plate = plate;
-            this.renavan = revanan;
-            this.situation = CarSituation.Available;
+            this.renavan = renavam;
+            this.situation = situation;
         }
+
     }
 }

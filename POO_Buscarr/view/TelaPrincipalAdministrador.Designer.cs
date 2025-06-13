@@ -191,6 +191,7 @@ namespace POO_Buscarr.view
             this.pictureBox13.Size = new System.Drawing.Size(120, 38);
             this.pictureBox13.TabIndex = 12;
             this.pictureBox13.TabStop = false;
+            this.pictureBox13.Click += new System.EventHandler(this.pictureBox13_Click);
             // 
             // pictureBox14
             // 
