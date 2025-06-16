@@ -18,54 +18,51 @@ namespace POO_Buscarr.controller
             _database = database;
         }
 
-        public int AddUser(string nome, string email, string senha, string cpf)
+        public int AddUser(string nome, string email, string senha, string cpf, short tipoUser = 0)
         {
             try
             {
                 _database.OpenConnection();
 
-                // Validação de e-mail
                 if (!Email_controller.IsValid(email))
                 {
                     Console.WriteLine("Email inválido!");
                     return -1;
                 }
 
-                // Verifica se o e-mail já está em uso
                 if (EmailExists(email))
                 {
                     Console.WriteLine("Email já está em uso!");
                     return -1;
                 }
 
-                // Validação de senha
                 if (!Password_controller.Verify(senha))
                 {
                     Console.WriteLine("Senha inválida!");
                     return -1;
                 }
 
-                // Validação de CPF
                 if (!CPFController.ValidateCpf(cpf))
                 {
                     Console.WriteLine("CPF inválido!");
                     return -1;
                 }
 
-                // Criptografa a senha
                 string hashedPassword = BCrypt.Net.BCrypt.EnhancedHashPassword(senha, 13);
 
-                // Comando SQL de inserção
-                string sql = "INSERT INTO usuarios (nome, email, senha, cpf) VALUES (@nome, @email, @senha, @cpf)";
+                string sql = "INSERT INTO usuarios (nome, email, senha, cpf, tipoUser) " +
+                     "VALUES (@nome, @email, @senha, @cpf, @tipoUser)";
+
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@nome", nome);
                     cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@senha", hashedPassword);
+                    cmd.Parameters.AddWithValue("@senha", BCrypt.Net.BCrypt.EnhancedHashPassword(senha, 13));
                     cmd.Parameters.AddWithValue("@cpf", cpf);
+                    cmd.Parameters.AddWithValue("@tipoUser", tipoUser);
 
                     cmd.ExecuteNonQuery();
-                    return (int)cmd.LastInsertedId; // Retorna o ID do usuário recém-inserido
+                    return (int)cmd.LastInsertedId;
                 }
             }
             catch (MySqlException ex)
@@ -352,7 +349,8 @@ namespace POO_Buscarr.controller
             try
             {
                 _database.OpenConnection();
-                string sql = "UPDATE motorista SET nome = @nome, email = @email WHERE id = @id";
+                // Corrigido para usar os nomes de colunas corretos da tabela usuarios
+                string sql = "UPDATE usuarios SET nome = @nome, email = @email WHERE id = @id";
 
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {

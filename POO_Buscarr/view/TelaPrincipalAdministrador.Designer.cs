@@ -220,6 +220,7 @@ namespace POO_Buscarr.view
             this.pictureBox16.Size = new System.Drawing.Size(120, 38);
             this.pictureBox16.TabIndex = 15;
             this.pictureBox16.TabStop = false;
+            this.pictureBox16.Click += new System.EventHandler(this.pictureBox16_Click);
             // 
             // pictureBox17
             // 
@@ -229,6 +230,7 @@ namespace POO_Buscarr.view
             this.pictureBox17.Size = new System.Drawing.Size(120, 38);
             this.pictureBox17.TabIndex = 16;
             this.pictureBox17.TabStop = false;
+            this.pictureBox17.Click += new System.EventHandler(this.pictureBox17_Click);
             // 
             // pictureBox18
             // 
@@ -247,6 +249,7 @@ namespace POO_Buscarr.view
             this.pictureBox19.Size = new System.Drawing.Size(120, 38);
             this.pictureBox19.TabIndex = 18;
             this.pictureBox19.TabStop = false;
+            this.pictureBox19.Click += new System.EventHandler(this.pictureBox19_Click);
             // 
             // pictureBox20
             // 

@@ -67,85 +67,89 @@ namespace POO_Buscarr.view
 
         private void btn_cadastrar_Click(object sender, EventArgs e)
         {
-            //Dados
-
+            // Dados
             string nome = campoNome.Text;
             string email = campoEmail.Text;
             string cpf = campoCPF.Text;
             string senha1 = campoSenha1.Text;
             string senha2 = campoSenha2.Text;
 
-            //Verificação do preenchimento ||:D||
-
-            if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(senha1) || string.IsNullOrEmpty(senha2))
+            // Verificação do preenchimento
+            if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(email) ||
+                string.IsNullOrEmpty(cpf) || string.IsNullOrEmpty(senha1) ||
+                string.IsNullOrEmpty(senha2))
             {
                 MessageBox.Show("Preencha todos os campos obrigatórios.");
                 return;
             }
 
-            //Validações
-            bool emailValido = Email_controller.IsValid(email);
-            bool cpfValido = CPFController.ValidateCpf(cpf);
-            bool senhaValida = Password_controller.Verify(senha1);
-            bool senhasIguais = senha1 == senha2;
+            // Verificar se algum checkbox está marcado
+            if (!checkBox1.Checked && !checkBox2.Checked)
+            {
+                MessageBox.Show("Selecione o tipo de usuário (Motorista ou Administrador).");
+                return;
+            }
 
-            // Verificar cada validação
-            if (!emailValido)
+            // Validações
+            if (!Email_controller.IsValid(email))
             {
                 MessageBox.Show("E-mail inválido.");
                 return;
             }
 
-            if (!cpfValido)
+            if (!CPFController.ValidateCpf(cpf))
             {
                 MessageBox.Show("CPF inválido.");
                 return;
             }
 
-            if (!senhaValida)
+            if (!Password_controller.Verify(senha1))
             {
-                MessageBox.Show("A senha não atende aos critérios.");
+                MessageBox.Show("A senha deve conter:\n- Mínimo 8 caracteres\n- Pelo menos 1 letra maiúscula\n- Pelo menos 1 letra minúscula\n- Pelo menos 1 número",
+                              "Senha Inválida");
                 return;
             }
 
-            if (!senhasIguais)
+            if (senha1 != senha2)
             {
                 MessageBox.Show("As senhas não coincidem.");
                 return;
             }
 
+            // Determinar o tipo de usuário
+            short tipoUser = 0; // 0 = não definido (padrão)
+            if (checkBox1.Checked) tipoUser = 2; // 2 = Motorista
+            if (checkBox2.Checked) tipoUser = 1; // 1 = Admin
 
-            var db = new POO_Buscarr.database.Database();
-            var userController = new POO_Buscarr.controller.UserController(db);
-            int userId = userController.AddUser(nome, email, senha1, cpf);
-            bool cadastrado = userId > 0;
+            var db = new Database();
+            var userController = new UserController(db);
 
+            // Cadastrar usuário com o tipoUser correto
+            int userId = userController.AddUser(nome, email, senha1, cpf, tipoUser);
 
-            if (cadastrado)
+            if (userId > 0)
             {
                 string mensagem = $"Usuário cadastrado com sucesso!\n\n" +
-                                  $"Nome: {nome}\n" +
-                                  $"E-mail: {email}\n" +
-                                  $"CPF: {cpf}";
+                                 $"Nome: {nome}\n" +
+                                 $"E-mail: {email}\n" +
+                                 $"CPF: {cpf}\n" +
+                                 $"Tipo: {(tipoUser == 1 ? "Administrador" : "Motorista")}";
+
                 MessageBox.Show(mensagem);
 
-                if (checkBox2.Checked)
+                // Redirecionar para telas específicas
+                if (tipoUser == 1) // Admin
                 {
+                    TelaDigitarCnpj telaAdmin = new TelaDigitarCnpj(userId);
+                    telaAdmin.Show();
+                }
+                else if (tipoUser == 2) // Motorista
+                {
+                    TelaDigitarCnh telaMotorista = new TelaDigitarCnh(userId);
+                    telaMotorista.Show();
+                }
 
-                    TelaDigitarCnpj tela1 = new TelaDigitarCnpj(userId);
-                    tela1.Show();
-                    this.Hide();
-                }
-                else if (checkBox1.Checked)
-                {
-                    TelaDigitarCnh tela2 = new TelaDigitarCnh(userId);
-                    tela2.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Selecione uma das opções para continuar.");
-                }
+                this.Hide();
             }
             else
             {
@@ -210,6 +214,11 @@ namespace POO_Buscarr.view
             {
                 checkBox1.Checked = false;
             }
+        }
+
+        private void TelaCadastro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
