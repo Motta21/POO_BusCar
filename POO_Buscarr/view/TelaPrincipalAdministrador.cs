@@ -138,5 +138,47 @@ namespace POO_Buscarr.view
                               MessageBoxIcon.Error);
             }
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var telaAdicionar = new TelaAdicionarAluno(_connectionString);
+                telaAdicionar.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de aluno:\n{ex.Message}",
+                               "Erro",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+            }
+        }
+
+        private void pictureBox22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var telaAdicionarVeiculo = new TelaAdicionarVeiculo(_connectionString);
+                telaAdicionarVeiculo.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir formulário de veículo:\n{ex.Message}",
+                                "Erro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -157,6 +157,7 @@
             this.pictureBox10.Size = new System.Drawing.Size(105, 24);
             this.pictureBox10.TabIndex = 9;
             this.pictureBox10.TabStop = false;
+            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
             // pictureBox11
             // 
@@ -166,6 +167,7 @@
             this.pictureBox11.Size = new System.Drawing.Size(105, 24);
             this.pictureBox11.TabIndex = 10;
             this.pictureBox11.TabStop = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox12
             // 
@@ -184,6 +186,7 @@
             this.pictureBox13.Size = new System.Drawing.Size(105, 24);
             this.pictureBox13.TabIndex = 12;
             this.pictureBox13.TabStop = false;
+            this.pictureBox13.Click += new System.EventHandler(this.pictureBox13_Click);
             // 
             // pictureBox14
             // 
@@ -224,7 +227,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TelaPrincipalMotorista";
             this.Text = "TelaPrincipalMotorista";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -92,6 +92,7 @@ namespace POO_Buscarr.view
             this.pictureBox2.Size = new System.Drawing.Size(378, 120);
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox3
             // 
@@ -110,6 +111,7 @@ namespace POO_Buscarr.view
             this.pictureBox4.Size = new System.Drawing.Size(378, 120);
             this.pictureBox4.TabIndex = 3;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox5
             // 
@@ -173,6 +175,7 @@ namespace POO_Buscarr.view
             this.pictureBox11.Size = new System.Drawing.Size(226, 38);
             this.pictureBox11.TabIndex = 10;
             this.pictureBox11.TabStop = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox12
             // 
@@ -278,6 +281,7 @@ namespace POO_Buscarr.view
             this.pictureBox22.Size = new System.Drawing.Size(120, 38);
             this.pictureBox22.TabIndex = 21;
             this.pictureBox22.TabStop = false;
+            this.pictureBox22.Click += new System.EventHandler(this.pictureBox22_Click);
             // 
             // TelaPrincipalAdministrador
             // 
