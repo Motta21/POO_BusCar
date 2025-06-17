@@ -18,8 +18,17 @@ namespace POO_Buscarr.view
             btnSalvar.Click += BtnSalvar_Click;
             btnCancelar.Click += (s, e) => this.Close();
         }
+        private string _connectionString;
 
-        public TelaAdicionarVeiculo(int id, string modelo, string placa, string renavam, string status) : this()
+    public TelaAdicionarVeiculo(string connectionString)
+{
+    InitializeComponent();
+    _connectionString = connectionString;
+    cmbSituacao.DataSource = Enum.GetValues(typeof(CarSituation));
+    btnSalvar.Click += BtnSalvar_Click;
+    btnCancelar.Click += (s, e) => this.Close();
+}
+        public TelaAdicionarVeiculo(int id, string modelo, string placa, string renavam, string status, string connectionString) : this(connectionString)
         {
             this.Text = "Editar Veículo";
             lblTitulo.Text = "Editar Veículo";
@@ -30,7 +39,6 @@ namespace POO_Buscarr.view
             txtPlaca.Text = placa;
             txtRenavam.Text = renavam;
 
-            // Seleciona o status correto no ComboBox
             if (Enum.TryParse(status, out CarSituation parsedStatus))
                 cmbSituacao.SelectedItem = parsedStatus;
         }

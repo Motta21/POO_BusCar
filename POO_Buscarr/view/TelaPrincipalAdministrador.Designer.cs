@@ -82,6 +82,7 @@ namespace POO_Buscarr.view
             this.pictureBox2.Size = new System.Drawing.Size(378, 120);
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox3
             // 
@@ -100,6 +101,7 @@ namespace POO_Buscarr.view
             this.pictureBox4.Size = new System.Drawing.Size(378, 120);
             this.pictureBox4.TabIndex = 3;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox5
             // 
@@ -118,6 +120,7 @@ namespace POO_Buscarr.view
             this.pictureBox11.Size = new System.Drawing.Size(226, 38);
             this.pictureBox11.TabIndex = 10;
             this.pictureBox11.TabStop = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox12
             // 
@@ -166,6 +169,7 @@ namespace POO_Buscarr.view
             this.pictureBox16.Size = new System.Drawing.Size(120, 38);
             this.pictureBox16.TabIndex = 15;
             this.pictureBox16.TabStop = false;
+            this.pictureBox16.Click += new System.EventHandler(this.pictureBox16_Click);
             // 
             // pictureBox17
             // 
@@ -175,6 +179,7 @@ namespace POO_Buscarr.view
             this.pictureBox17.Size = new System.Drawing.Size(120, 38);
             this.pictureBox17.TabIndex = 16;
             this.pictureBox17.TabStop = false;
+            this.pictureBox17.Click += new System.EventHandler(this.pictureBox17_Click);
             // 
             // pictureBox18
             // 
@@ -194,6 +199,7 @@ namespace POO_Buscarr.view
             this.pictureBox19.Size = new System.Drawing.Size(120, 38);
             this.pictureBox19.TabIndex = 18;
             this.pictureBox19.TabStop = false;
+            this.pictureBox19.Click += new System.EventHandler(this.pictureBox19_Click);
             // 
             // pictureBox20
             // 
@@ -222,6 +228,7 @@ namespace POO_Buscarr.view
             this.pictureBox22.Size = new System.Drawing.Size(120, 38);
             this.pictureBox22.TabIndex = 21;
             this.pictureBox22.TabStop = false;
+            this.pictureBox22.Click += new System.EventHandler(this.pictureBox22_Click);
             // 
             // TelaPrincipalAdministrador
             // 
