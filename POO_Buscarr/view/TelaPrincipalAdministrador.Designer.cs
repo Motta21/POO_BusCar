@@ -211,6 +211,7 @@ namespace POO_Buscarr.view
             this.pictureBox15.Size = new System.Drawing.Size(120, 38);
             this.pictureBox15.TabIndex = 14;
             this.pictureBox15.TabStop = false;
+            this.pictureBox15.Click += new System.EventHandler(this.pictureBox15_Click);
             // 
             // pictureBox16
             // 
@@ -224,7 +225,7 @@ namespace POO_Buscarr.view
             // pictureBox17
             // 
             this.pictureBox17.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox17.Location = new System.Drawing.Point(253, 586);
+            this.pictureBox17.Location = new System.Drawing.Point(253, 583);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(120, 38);
             this.pictureBox17.TabIndex = 16;
@@ -233,11 +234,12 @@ namespace POO_Buscarr.view
             // pictureBox18
             // 
             this.pictureBox18.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox18.Location = new System.Drawing.Point(253, 649);
+            this.pictureBox18.Location = new System.Drawing.Point(253, 633);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(120, 38);
             this.pictureBox18.TabIndex = 17;
             this.pictureBox18.TabStop = false;
+            this.pictureBox18.Click += new System.EventHandler(this.pictureBox18_Click);
             // 
             // pictureBox19
             // 

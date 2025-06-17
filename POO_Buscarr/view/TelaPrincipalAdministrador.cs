@@ -75,5 +75,37 @@ namespace POO_Buscarr.view
                                MessageBoxIcon.Error);
             }
         }
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var telaVisualizar = new Visualizar_Alunos_Tela();
+                telaVisualizar.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Tela aberta com Sucesso!\n{ex.Message}",
+                               "Hello",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+            }
+        }
+
+        private void pictureBox18_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var telaVisualizarMotora = new Visualizar_Morotista_Tela();
+                telaVisualizarMotora.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Tela aberta com Sucesso!\n{ex.Message}",
+                               "Hello",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+            }
+        }
     }
 }
