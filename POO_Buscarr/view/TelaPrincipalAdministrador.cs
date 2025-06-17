@@ -180,5 +180,6 @@ namespace POO_Buscarr.view
         {
 
         }
+
     }
 }
