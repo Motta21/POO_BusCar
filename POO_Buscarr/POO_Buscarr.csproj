@@ -137,6 +137,18 @@
     <Compile Include="view\TelaMotoristas.Designer.cs">
       <DependentUpon>TelaMotoristas.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\TelaPerfilAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPerfilAdministrador.Designer.cs">
+      <DependentUpon>TelaPerfilAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaPerfilMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPerfilMotorista.Designer.cs">
+      <DependentUpon>TelaPerfilMotorista.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaVeiculos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +256,12 @@
     </Compile>
     <EmbeddedResource Include="view\TelaPassageiros.resx">
       <DependentUpon>TelaPassageiros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaPerfilAdministrador.resx">
+      <DependentUpon>TelaPerfilAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaPerfilMotorista.resx">
+      <DependentUpon>TelaPerfilMotorista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\TelaPrincipalAdministrador.resx">
       <DependentUpon>TelaPrincipalAdministrador.cs</DependentUpon>

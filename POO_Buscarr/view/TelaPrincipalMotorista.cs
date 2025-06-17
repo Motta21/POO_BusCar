@@ -129,5 +129,22 @@ namespace POO_Buscarr.view
                                MessageBoxIcon.Error);
             }
         }
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var telaPerfil = new TelaPerfilMotorista();
+                telaPerfil.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir o perfil do motorista:\n{ex.Message}",
+                               "Erro",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
