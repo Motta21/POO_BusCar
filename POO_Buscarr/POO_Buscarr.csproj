@@ -107,6 +107,7 @@
     <Compile Include="controller\CNPJ_controller.cs" />
     <Compile Include="controller\CPF_controller.cs" />
     <Compile Include="controller\Email_controller.cs" />
+    <Compile Include="controller\PasswordRecoveryController.cs" />
     <Compile Include="controller\Password_controller.cs" />
     <Compile Include="controller\User_controller.cs" />
     <Compile Include="database\banco.cs" />
@@ -119,6 +120,12 @@
     <Compile Include="model\Session.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="view\TelaRecuperarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha.Designer.cs">
+      <DependentUpon>TelaRecuperarSenha.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaAdicionarMotorista.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,24 +204,6 @@
     <Compile Include="view\TelaPrincipalMotorista.Designer.cs">
       <DependentUpon>TelaPrincipalMotorista.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Codigo_Email.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Codigo_Email.Designer.cs">
-      <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Email.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Email.Designer.cs">
-      <DependentUpon>TelaRecuperarSenha_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Nova_Senha.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Nova_Senha.Designer.cs">
-      <DependentUpon>TelaRecuperarSenha_Nova_Senha.cs</DependentUpon>
-    </Compile>
     <Compile Include="view\TelaCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,14 +258,8 @@
     <EmbeddedResource Include="view\TelaPrincipalMotorista.resx">
       <DependentUpon>TelaPrincipalMotorista.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\TelaRecuperarSenha_Codigo_Email.resx">
-      <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\TelaRecuperarSenha_Email.resx">
-      <DependentUpon>TelaRecuperarSenha_Email.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\TelaRecuperarSenha_Nova_Senha.resx">
-      <DependentUpon>TelaRecuperarSenha_Nova_Senha.cs</DependentUpon>
+    <EmbeddedResource Include="view\TelaRecuperarSenha.resx">
+      <DependentUpon>TelaRecuperarSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Visualizar_Alunos_Tela.resx">
       <DependentUpon>Visualizar_Alunos_Tela.cs</DependentUpon>

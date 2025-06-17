@@ -11,10 +11,14 @@ namespace POO_Buscarr
 {
     public partial class TelaLogin : Form
     {
+        private readonly Database _database; 
+
         public TelaLogin()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            _database = new Database();
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -167,6 +171,12 @@ namespace POO_Buscarr
         private void campoEmailLogin_TextChanged_1(object sender, EventArgs e)
         {
      
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            var telaRecuperacao = new TelaRecuperarSenha(_database);
+            telaRecuperacao.ShowDialog(); 
         }
     }
 }
