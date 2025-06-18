@@ -5,26 +5,26 @@ using POO_Buscarr.database;
 
 using System;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using MySql.Data.MySqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using MySqlX.XDevAPI;
 
 namespace POO_Buscarr
 {
     public partial class TelaLogin : Form
     {
+        private readonly Database _database; 
+
         public TelaLogin()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            _database = new Database();
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
-
 
         private void btnFazerLogin_Click(object sender, EventArgs e)
         {
@@ -47,7 +47,7 @@ namespace POO_Buscarr
             // Tenta fazer login
             try
             {
-                using (Database db = new Database()) // ⚠️ Usando "using" para fechar conexão automaticamente
+                using (Database db = new Database()) // Fecha a conexão automaticamente
                 {
                     if (!db.OpenConnection())
                     {
@@ -55,8 +55,7 @@ namespace POO_Buscarr
                         return;
                     }
 
-                    // 1ª Consulta: Verifica e-mail e senha
-                    string queryLogin = "SELECT id, senha, nome, email, cpf FROM usuarios WHERE email = @Email";
+                    string queryLogin = "SELECT id, senha, nome, email, cpf, tipoUser FROM usuarios WHERE email = @Email";
 
                     using (MySqlCommand cmd = new MySqlCommand(queryLogin, db.GetConnection()))
                     {
@@ -71,7 +70,8 @@ namespace POO_Buscarr
 
                                 if (senhaValida)
                                 {
-                                    // Dados do usuário (já lidos na mesma query para evitar 2ª consulta)
+                                    int tipoUser = reader.GetInt32("tipoUser");
+
                                     User user = new User
                                     {
                                         Id = reader.GetInt32("id"),
@@ -85,7 +85,21 @@ namespace POO_Buscarr
                                     MessageBox.Show("Login realizado com sucesso!", "Sucesso");
                                     this.Hide();
 
-                                    var telaPrincipal = new TelaPrincipalAdministrador(user.Id);
+                                    Form telaPrincipal;
+                                    if (tipoUser == 1)
+                                    {
+                                        telaPrincipal = new TelaPrincipalAdministrador(user.Id);
+                                    }
+                                    else if (tipoUser == 2)
+                                    {
+                                        telaPrincipal = new TelaPrincipalMotorista(user.Id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Tipo de usuário inválido.", "Erro");
+                                        return;
+                                    }
+
                                     telaPrincipal.FormClosed += (s, args) => this.Close();
                                     telaPrincipal.Show();
                                 }
@@ -113,42 +127,37 @@ namespace POO_Buscarr
         }
 
 
-
-
-
         private void label1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Deu certo"); ;
+            Console.WriteLine("Deu certo");
         }
 
         private void btnIrCadastro_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var telaCadastro = new TelaCadastro(); 
-            telaCadastro.FormClosed += (s, args) => this.Close(); 
-            telaCadastro.Show(); 
+            var telaCadastro = new TelaCadastro();
+            telaCadastro.FormClosed += (s, args) => this.Close();
+            telaCadastro.Show();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+       
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-           
-
+       
         }
 
         private void campoEmailLogin_TextChanged(object sender, EventArgs e)
         {
-
+       
         }
 
         private void campoSenhaLogin_TextChanged(object sender, EventArgs e)
         {
-
+       
         }
 
         private void btnIrCadastro_Click_1(object sender, EventArgs e)
@@ -161,7 +170,13 @@ namespace POO_Buscarr
 
         private void campoEmailLogin_TextChanged_1(object sender, EventArgs e)
         {
+     
+        }
 
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            var telaRecuperacao = new TelaRecuperarSenha(_database);
+            telaRecuperacao.ShowDialog(); 
         }
     }
 }

@@ -107,6 +107,7 @@
     <Compile Include="controller\CNPJ_controller.cs" />
     <Compile Include="controller\CPF_controller.cs" />
     <Compile Include="controller\Email_controller.cs" />
+    <Compile Include="controller\PasswordRecoveryController.cs" />
     <Compile Include="controller\Password_controller.cs" />
     <Compile Include="controller\User_controller.cs" />
     <Compile Include="database\banco.cs" />
@@ -114,15 +115,46 @@
     <Compile Include="model\Aluno.cs" />
     <Compile Include="model\Car.cs" />
     <Compile Include="model\CarSituation.cs" />
+    <Compile Include="model\Motorista.cs" />
     <Compile Include="model\Driver.cs" />
     <Compile Include="model\Session.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="view\TelaRecuperarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaRecuperarSenha.Designer.cs">
+      <DependentUpon>TelaRecuperarSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaAdicionarMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaAdicionarMotorista.Designer.cs">
+      <DependentUpon>TelaAdicionarMotorista.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\TelaAdicionarVeiculo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\TelaAdicionarVeiculo.Designer.cs">
       <DependentUpon>TelaAdicionarVeiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaMotoristas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaMotoristas.Designer.cs">
+      <DependentUpon>TelaMotoristas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaPerfilAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPerfilAdministrador.Designer.cs">
+      <DependentUpon>TelaPerfilAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\TelaPerfilMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\TelaPerfilMotorista.Designer.cs">
+      <DependentUpon>TelaPerfilMotorista.cs</DependentUpon>
     </Compile>
     <Compile Include="view\TelaVeiculos.cs">
       <SubType>Form</SubType>
@@ -172,24 +204,6 @@
     <Compile Include="view\TelaPrincipalMotorista.Designer.cs">
       <DependentUpon>TelaPrincipalMotorista.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Codigo_Email.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Codigo_Email.Designer.cs">
-      <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Email.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Email.Designer.cs">
-      <DependentUpon>TelaRecuperarSenha_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Nova_Senha.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\TelaRecuperarSenha_Nova_Senha.Designer.cs">
-      <DependentUpon>TelaRecuperarSenha_Nova_Senha.cs</DependentUpon>
-    </Compile>
     <Compile Include="view\TelaCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,24 +218,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view\Visualizar_Alunos_Tela.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Visualizar_Alunos_Tela.Designer.cs">
-      <DependentUpon>Visualizar_Alunos_Tela.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Visualizar_Morotista_Tela.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Visualizar_Morotista_Tela.Designer.cs">
-      <DependentUpon>Visualizar_Morotista_Tela.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Visualizar_Veiculo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Visualizar_Veiculo.Designer.cs">
-      <DependentUpon>Visualizar_Veiculo.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="view\TelaAdicionarMotorista.resx">
+      <DependentUpon>TelaAdicionarMotorista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\TelaCadastro.resx">
       <DependentUpon>TelaCadastro.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,20 +246,20 @@
     <EmbeddedResource Include="view\TelaPassageiros.resx">
       <DependentUpon>TelaPassageiros.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaPerfilAdministrador.resx">
+      <DependentUpon>TelaPerfilAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\TelaPerfilMotorista.resx">
+      <DependentUpon>TelaPerfilMotorista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\TelaPrincipalAdministrador.resx">
       <DependentUpon>TelaPrincipalAdministrador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\TelaPrincipalMotorista.resx">
       <DependentUpon>TelaPrincipalMotorista.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\TelaRecuperarSenha_Codigo_Email.resx">
-      <DependentUpon>TelaRecuperarSenha_Codigo_Email.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\TelaRecuperarSenha_Email.resx">
-      <DependentUpon>TelaRecuperarSenha_Email.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\TelaRecuperarSenha_Nova_Senha.resx">
-      <DependentUpon>TelaRecuperarSenha_Nova_Senha.cs</DependentUpon>
+    <EmbeddedResource Include="view\TelaRecuperarSenha.resx">
+      <DependentUpon>TelaRecuperarSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Visualizar_Alunos_Tela.resx">
       <DependentUpon>Visualizar_Alunos_Tela.cs</DependentUpon>
