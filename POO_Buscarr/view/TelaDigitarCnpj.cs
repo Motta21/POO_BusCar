@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using POO_Buscarr.controller;
 using POO_Buscarr.database;
+using POO_Buscarr.model.session;
 
 namespace POO_Buscarr.view
 {
@@ -39,6 +40,16 @@ namespace POO_Buscarr.view
                 if (cadastroSucesso)
                 {
                     MessageBox.Show("Admin cadastrado com sucesso!");
+
+                    // Buscar os dados do usuário para armazenar na sessão
+
+                    // Buscar o usuário pelo ID
+                    var user = _userController.BuscarPorId(_userId);
+                    if (user != null)
+                    {
+                        // Salvar na sessão
+                        Session.Login(user); // <-- Aqui você está logando o usuário na sessão
+                    }
 
                     this.Hide();
                     var telaAdministrador = new TelaPrincipalAdministrador(_userId);

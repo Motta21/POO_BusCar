@@ -117,7 +117,7 @@ namespace POO_Buscarr.controller
             {
                 _database.OpenConnection();
 
-                string sql = "INSERT INTO usuarios (tipoUser) VALUES (@tipoUser) WHERE id = @id";
+                string sql = "UPDATE usuarios SET tipoUser = @tipoUser WHERE id = @id";
                 using (var cmd = new MySqlCommand(sql, _database.GetConnection()))
                 {
                     cmd.Parameters.AddWithValue("@tipoUser", userType);
@@ -126,17 +126,16 @@ namespace POO_Buscarr.controller
                     cmd.ExecuteNonQuery();
                 }
             }
-
             catch (MySqlException ex)
             {
                 Console.WriteLine($"Erro ao alterar o tipo do usuário: {ex.Message}");
             }
-
             finally
             {
                 _database.CloseConnection();
             }
         }
+
 
         public bool AddDriverUser(int userId, string cnh)
         {
@@ -424,5 +423,37 @@ namespace POO_Buscarr.controller
                 _database.CloseConnection();
             }
         }
+
+        public User BuscarPorId(int id)
+        {
+            using (var conn = _database.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM usuarios WHERE id = @id";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User
+                            {
+                                Id = reader.GetInt32("id"),
+                                Email = reader.GetString("email"),
+                                Cpf = reader.GetString("cpf"),
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+
     }
+
 }

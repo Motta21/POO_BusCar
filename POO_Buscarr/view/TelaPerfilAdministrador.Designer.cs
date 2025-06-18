@@ -37,7 +37,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "TelaPerfilAdministrador";
             this.Text = "TelaPerfilAdministrador";
-            //this.Load += new System.EventHandler(this.TelaPerfilAdministrador_Load);
             this.ResumeLayout(false);
 
         }
