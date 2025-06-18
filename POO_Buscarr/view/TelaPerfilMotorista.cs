@@ -79,7 +79,7 @@ namespace POO_Buscarr.view
 
             Label lblCpf = new Label();
             lblCpf.Text = "CPF:";
-            lblCpf.Location = new Point(50, startY + 2 * spacing);
+            lblCpf.Location = new Point(50, startY + spacing);
             lblCpf.Size = new Size(100, 30);
             lblCpf.Font = new Font("Segoe UI", 12);
             this.Controls.Add(lblCpf);

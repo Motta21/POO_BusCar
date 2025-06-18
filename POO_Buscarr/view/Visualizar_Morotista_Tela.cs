@@ -47,7 +47,7 @@ namespace POO_Buscarr.view
             dgvMotoristas.Columns.Add(new DataGridViewTextBoxColumn { Name = "Email", HeaderText = "Email", DataPropertyName = "email" });
             dgvMotoristas.Columns.Add(new DataGridViewTextBoxColumn { Name = "CPF", HeaderText = "CPF", DataPropertyName = "cpf" });
             dgvMotoristas.Columns.Add(new DataGridViewTextBoxColumn { Name = "CNH", HeaderText = "CNH", DataPropertyName = "cnh" });
-;
+            ;
 
             dataGridView1.Controls.Add(dgvMotoristas);
         }
@@ -62,7 +62,12 @@ namespace POO_Buscarr.view
                 {
                     connection.Open();
 
-                    string query = "SELECT nome, email, cpf, NULL as cnh FROM usuarios\r\nUNION\r\nSELECT NULL, NULL, NULL, cnh FROM motorista;";
+                    string query = @"
+    SELECT u.nome, u.email, u.cpf, m.cnh
+    FROM usuarios u
+    INNER JOIN motorista m ON u.id = m.id
+    WHERE m.cnh IS NOT NULL";
+
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
@@ -73,17 +78,17 @@ namespace POO_Buscarr.view
                             dgvMotoristas.Rows.Add(
                                 reader["nome"]?.ToString(),
                                 reader["email"]?.ToString(),
-                                reader["cof"]?.ToString(),
+                                reader["cpf"]?.ToString(),
                                 reader["cnh"]?.ToString()
-                               
                             );
                         }
                     }
+
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar alunos:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar tabela:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

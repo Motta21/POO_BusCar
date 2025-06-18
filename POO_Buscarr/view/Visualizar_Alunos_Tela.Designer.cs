@@ -57,7 +57,7 @@ namespace POO_Buscarr.view
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(316, 45);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "🚍 Visualizar Aluno\r\n";
+            this.lblTitulo.Text = "🎓 Visualizar Aluno\r\n";
             this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // dataGridView1
